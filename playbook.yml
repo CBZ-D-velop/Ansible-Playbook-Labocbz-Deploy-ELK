@@ -1,0 +1,119 @@
+---
+- name: "labocbz.deploy_elk"
+  hosts: "all"
+  gather_facts: true
+  remote_user: root
+  strategy: free
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+    - name: "Include labocbz.install_java"
+      tags:
+      - "labocbz.install_java"
+      vars:
+        java_version: "{{ inv_java_version }}"
+        java_cpu_architecture: "{{ inv_java_cpu_architecture }}"
+        java_version_is_default: true
+      ansible.builtin.include_role:
+        name: "labocbz.install_java"
+
+
+
+
+    - name: "Include labocbz.install_elasticsearch"
+      tags:
+        - "labocbz.install_elasticsearch"
+      vars:
+        install_elasticsearch_major_version: "{{ inv_install_elasticsearch_major_version }}"
+        install_elasticsearch_port: "{{ inv_install_elasticsearch_port }}"
+        install_elasticsearch_cluster_name: "{{ inv_install_elasticsearch_cluster_name }}"
+        install_elasticsearch_elastic_password: "{{ inv_install_elasticsearch_elastic_password }}"
+        install_elasticsearch_heap: "{{ inv_install_elasticsearch_heap }}"
+        install_elasticsearch_data_path: "{{ inv_install_elasticsearch_data_path }}"
+        install_elasticsearch_ssl_path: "{{ inv_install_elasticsearch_ssl_path }}"
+        install_elasticsearch_config_path: "{{ inv_install_elasticsearch_config_path }}"
+        install_elasticsearch_client_auth: "{{ inv_install_elasticsearch_client_auth }}"
+        install_elasticsearch_ssl_authorities: "{{ inv_install_elasticsearch_ssl_authorities }}"
+        install_elasticsearch_ssl: "{{ inv_install_elasticsearch_ssl }}"
+        install_elasticsearch_ssl_key: "{{ inv_install_elasticsearch_ssl_key }}"
+        install_elasticsearch_ssl_crt: "{{ inv_install_elasticsearch_ssl_crt }}"
+      ansible.builtin.include_role:
+        name: "labocbz.install_elasticsearch"
+
+
+
+
+    - name: "Include labocbz.install_logstash"
+      tags:
+        - "labocbz.install_logstash"
+      vars:
+        install_logstash_major_version: "{{ inv_install_logstash_major_version }}"
+        install_logstash_config_path: "{{ inv_install_logstash_config_path }}"
+        install_logstash_ssl_path: "{{ inv_install_logstash_ssl_path }}"
+        install_logstash_pipelines_path: "{{ inv_install_logstash_pipelines_path }}"
+        install_logstash_pipelines_reload: "{{ inv_install_logstash_pipelines_reload }}"
+        install_logstash_pipelines: "{{ inv_install_logstash_pipelines }}"
+        install_logstash_health_check_pipeline: "{{ inv_install_logstash_health_check_pipeline }}"
+        install_logstash_api: "{{ inv_install_logstash_api }}"
+        install_logstash_api_ports: "{{ inv_install_logstash_api_ports }}"
+        install_logstash_api_auth_type: "{{ inv_install_logstash_api_auth_type }}"
+        install_logstash_api_auth_login: "{{ inv_install_logstash_api_auth_login }}"
+        install_logstash_api_auth_password: "{{ inv_install_logstash_api_auth_password }}"
+        install_logstash_host: "{{ inv_install_logstash_host }}"
+        install_logstash_cluster_name: "{{ inv_install_logstash_cluster_name }}"
+        install_logstash_data_path: "{{ inv_install_logstash_data_path }}"
+        install_logstash_group: "{{ inv_install_logstash_group }}"
+        install_logstash_user: "{{ inv_install_logstash_user }}"
+        install_logstash_ram: "{{ inv_install_logstash_ram }}"
+        install_logstash_api_ssl: "{{ inv_install_logstash_api_ssl }}"
+        install_logstash_api_jks: "{{ inv_install_logstash_api_jks }}"
+        install_logstash_api_jks_password: "{{ inv_install_logstash_api_jks_password }}"
+        install_logstash_beats_ssl: "{{ inv_install_logstash_beats_ssl }}"
+        install_logstash_client_auth: "{{ inv_install_logstash_client_auth }}"
+        install_logstash_ssl_authorities: "{{ inv_install_logstash_ssl_authorities }}"
+        install_logstash_distributor_pipeline: "{{ inv_install_logstash_distributor_pipeline }}"
+        install_logstash_ssl_crt: "{{ inv_install_logstash_ssl_crt }}"
+        install_logstash_ssl_key: "{{ inv_install_logstash_ssl_key }}"
+        install_logstash_api_p12: "{{ inv_install_logstash_api_p12 }}"
+        install_logstash_ssl_p8: "{{ inv_install_logstash_ssl_p8 }}"
+        install_logstash_loglevel: "{{ inv_install_logstash_loglevel }}"
+        install_logstash_elasticsearch_shard: "{{ inv_install_logstash_elasticsearch_shard }}"
+        install_logstash_elasticsearch_ssl: "{{ inv_install_logstash_elasticsearch_ssl }}"
+        install_logstash_elasticsearch_login: "{{ inv_install_logstash_elasticsearch_login }}"
+        install_logstash_elasticsearch_password: "{{ inv_install_logstash_elasticsearch_password }}"
+        install_logstash_elasticsearch_hosts: "{{ inv_install_logstash_elasticsearch_hosts }}"
+        install_logstash_elasticsearch_client_auth: "{{ inv_install_logstash_elasticsearch_client_auth }}"
+      ansible.builtin.include_role:
+        name: "labocbz.install_logstash"
+
+
+
+
+    - name: "Include labocbz.install_kibana"
+      tags:
+        - "labocbz.install_kibana"
+      vars:
+        install_kibana_major_version: "{{ inv_install_kibana_major_version }}"
+        install_kibana_config_path: "{{ inv_install_kibana_config_path }}"
+        install_kibana_port: "{{ inv_install_kibana_port }}"
+        install_kibana_cluster_name: "{{ inv_install_kibana_cluster_name }}"
+        install_kibana_rewrite_base_path: "{{ inv_install_kibana_rewrite_base_path }}"
+        install_kibana_base_path: "{{ inv_install_kibana_base_path }}"
+        install_kibana_public_pase_url: "{{ inv_install_kibana_public_pase_url }}"
+        install_kibana_ssl_src: "{{ inv_install_kibana_ssl_src }}"
+        install_kibana_ssl_path: "{{ inv_install_kibana_ssl_path }}"
+        install_kibana_elasticsearch_port: "{{ inv_install_kibana_elasticsearch_port }}"
+        #install_kibana_service_account_token: "{{ inv_install_kibana_service_account_token }}"
+        install_kibana_service_account_token_basename: "{{ inv_install_kibana_service_account_token_basename }}"
+        install_kibana_elastic_password: "{{ inv_install_kibana_elastic_password }}"
+        install_kibana_elastic_user: "{{ inv_install_kibana_elastic_user }}"
+        install_kibana_elastic_protocol: "{{ inv_install_kibana_elastic_protocol }}"
+        install_kibana_elastic_hosts: "{{ inv_install_kibana_elastic_hosts }}"
+        install_kibana_elastic_client_auth: "{{ inv_install_kibana_elastic_client_auth }}"
+        install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_authorities }}"
+        install_kibana_ssl_key: "{{ inv_install_kibana_ssl_key }}"
+        install_kibana_ssl_crt: "{{ inv_install_kibana_ssl_crt }}"
+      ansible.builtin.include_role:
+        name: "labocbz.install_kibana"

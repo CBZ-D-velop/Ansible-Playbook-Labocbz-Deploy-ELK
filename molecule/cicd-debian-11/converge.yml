@@ -1,0 +1,5 @@
+---
+- name: "Include labocbz.deploy_elk playbook"
+  tags:
+      - "labocbz.deploy_elk"
+  ansible.builtin.import_playbook: "../../playbook.yml"
