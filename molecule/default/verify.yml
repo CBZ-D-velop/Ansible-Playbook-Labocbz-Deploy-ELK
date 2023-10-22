@@ -1,6 +1,6 @@
 ---
- Don't forget to keep this file updated
- molecule/<scenario>/verify.yml
+# Don't forget to keep this file updated
+# molecule/<scenario>/verify.yml
 - name: "Verify"
   hosts: "all:&ELASTICSEARCH"
   gather_facts: false
