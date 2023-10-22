@@ -1,7 +1,7 @@
 ---
 ansible_ssh_port: 22
 
-inv_install_elasticsearch: false
+inv_install_elasticsearch: true
 inv_install_logstash: true
 inv_install_kibana: true
 inv_install_apache: true
