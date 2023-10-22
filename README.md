@@ -93,7 +93,11 @@ Here you can put your change to keep a trace of your work and decisions.
 ### 2023-10-22: First Init
 
 * First init of this playbook with the bootstrap_playbook playbook by Lord Robin Crombez
-
+* Playbook deploy ELK
+* Playbook deploy Elasticsearch
+* Playbook deploy Logstash
+* Playbook deploy Kibana
+* Playbook deploy Apache2 as reverse proxy ssl / Auth 
 ## Authors
 
 * Lord Robin Crombez

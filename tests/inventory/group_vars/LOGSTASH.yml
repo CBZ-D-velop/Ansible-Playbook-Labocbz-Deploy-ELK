@@ -1,10 +1,7 @@
 ---
 
----
-inv_prepare_host_users:
-  - login: "elastic"
-    group: "elastic"
-  - login: "logstash"
+inv_logstash_prepare_host_users:
+  - login: "root"
     group: "logstash"
 
 inv_install_logstash_major_version: 8
@@ -69,12 +66,35 @@ inv_install_logstash_user: "logstash"
 inv_install_logstash_ram: "1g"
 inv_install_logstash_loglevel: "info"
 
-inv_install_logstash_elasticsearch_shard: 1
+inv_install_logstash_elasticsearch_shard: 3
 inv_install_logstash_elasticsearch_ssl: true
 inv_install_logstash_elasticsearch_client_auth: true
 inv_install_logstash_elasticsearch_login: "elastic"
 inv_install_logstash_elasticsearch_password: "myVeryStringP@ssword"
 inv_install_logstash_elasticsearch_hosts:
-  - "molecule-local-instance-1-install-logstash:9200"
+  - "molecule-local-instance-1-deploy-elk:9200"
+  - "molecule-local-instance-2-deploy-elk:9200"
+  - "molecule-local-instance-3-deploy-elk:9200"
 
 inv_logstash_cert_bundles:
+  - name: "My-Local-Ansible-Root-CA.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+
+  - name: "my-logstash-cluster.domain.tld"
+    type: "cert"
+    src: "/tmp/my-logstash-cluster.domain.tld.zip"
+    dest: "{{ inv_install_logstash_ssl_path }}"
+    #src_user: "myUser"
+    #src_password: "secretPassword"
+    dest_user: "root"
+    dest_group: "logstash"
+    dest_mode: "0755"

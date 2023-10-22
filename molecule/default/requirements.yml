@@ -8,7 +8,7 @@
   version: "2.0"
 
 - name: "labocbz.install_elasticsearch"
-  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Elasticsearh.git"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Elasticsearch.git"
   version: "3.0"
 
 - name: "labocbz.install_logstash"
@@ -26,3 +26,7 @@
 - name: "labocbz.add_apache_confs"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Apache-Confs.git"
   version: "3.0"
+
+- name: "labocbz.install_java"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Java.git"
+  version: "2.0"

@@ -1,5 +1,9 @@
 ---
 
+inv_elasticsearch_prepare_host_users:
+  - login: "root"
+    group: "elastic"
+
 inv_install_elasticsearch_major_version: "8"
 
 inv_install_elasticsearch_port: 9200
@@ -21,3 +25,24 @@ inv_install_elasticsearch_ssl: true
 inv_install_elasticsearch_heap: "2g"
 
 inv_elasticsearch_cert_bundles:
+  - name: "My-Local-Ansible-Root-CA.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+
+  - name: "my-elasticsearch-cluster.domain.tld"
+    type: "cert"
+    src: "/tmp/my-elasticsearch-cluster.domain.tld.zip"
+    dest: "{{ inv_install_elasticsearch_ssl_path }}"
+    #src_user: "myUser"
+    #src_password: "secretPassword"
+    dest_user: "root"
+    dest_group: "elastic"
+    dest_mode: "0755"

@@ -1,14 +1,18 @@
 ---
 
+inv_kibana_prepare_host_users:
+  - login: "root"
+    group: "kibana"
+
 inv_install_kibana_major_version: "8"
 
 inv_install_kibana_config_path: "/etc/kibana"
 inv_install_kibana_port: 5601
-inv_install_kibana_cluster_name: "my-kibana-cluster-role.domain.tld"
+inv_install_kibana_cluster_name: "my-kibana-cluster.domain.tld"
 
-inv_install_kibana_rewrite_base_path: false
-#inv_install_kibana_base_path: ""
-#inv_install_kibana_public_base_url: "https://localhost:{{ inv_install_kibana_port }}"
+inv_install_kibana_rewrite_base_path: true
+inv_install_kibana_base_path: ""
+inv_install_kibana_public_base_url: "https://localhost:{{ inv_install_kibana_port }}"
 
 inv_install_kibana_ssl_path: "{{ inv_install_kibana_config_path }}/ssl"
 
@@ -24,6 +28,29 @@ inv_install_kibana_ssl_crt: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_ki
 inv_install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/ca-chain.pem.crt"
 inv_install_kibana_elastic_protocol: "https"
 inv_install_kibana_elastic_hosts:
-  - "molecule-local-instance-1-install-kibana:9200"
+  - "molecule-local-instance-1-deploy-elk:9200"
+  - "molecule-local-instance-2-deploy-elk:9200"
+  - "molecule-local-instance-3-deploy-elk:9200"
 
 inv_kibana_cert_bundles:
+  - name: "My-Local-Ansible-Root-CA.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+
+  - name: "my-kibana-cluster.domain.tld"
+    type: "cert"
+    src: "/tmp/my-kibana-cluster.domain.tld.zip"
+    dest: "{{ inv_install_kibana_ssl_path }}"
+    #src_user: "myUser"
+    #src_password: "secretPassword"
+    dest_user: "root"
+    dest_group: "kibana"
+    dest_mode: "0755"
