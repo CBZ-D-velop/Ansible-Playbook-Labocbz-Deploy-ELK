@@ -1,7 +1,7 @@
 ---
 
 inv_kibana_prepare_host_users:
-  - login: "root"
+  - login: "kibana"
     group: "kibana"
 
 inv_install_kibana_major_version: "8"
@@ -21,36 +21,36 @@ inv_install_kibana_elastic_user: "elastic"
 inv_install_kibana_elastic_password: "myVeryStringP@ssword"
 #inv_install_kibana_service_account_token: ""
 inv_install_kibana_service_account_token_basename: "ANSIBLE-{{ ansible_date_time.iso8601_micro.replace(':', '-').replace('.', '-') }}"
-inv_install_kibana_elastic_client_auth: true
+inv_install_kibana_elastic_client_auth: false
 inv_install_kibana_ssl_key: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/{{ inv_install_kibana_cluster_name }}.pem.key"
 inv_install_kibana_ssl_crt: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/{{ inv_install_kibana_cluster_name }}.pem.crt"
 
-inv_install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/ca-chain.pem.crt"
-inv_install_kibana_elastic_protocol: "https"
+#inv_install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/ca-chain.pem.crt"
+inv_install_kibana_elastic_protocol: "http"
 inv_install_kibana_elastic_hosts:
   - "molecule-local-instance-1-deploy-elk:9200"
   - "molecule-local-instance-2-deploy-elk:9200"
   - "molecule-local-instance-3-deploy-elk:9200"
 
-inv_kibana_cert_bundles:
-  - name: "My-Local-Ansible-Root-CA.pem.crt"
-    type: "CA"
-    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
-
-  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
-    type: "CA"
-    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
-
-  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
-    type: "CA"
-    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
-
-  - name: "my-kibana-cluster.domain.tld"
-    type: "cert"
-    src: "/tmp/my-kibana-cluster.domain.tld.zip"
-    dest: "{{ inv_install_kibana_ssl_path }}"
-    #src_user: "myUser"
-    #src_password: "secretPassword"
-    dest_user: "root"
-    dest_group: "kibana"
-    dest_mode: "0755"
+#inv_kibana_cert_bundles:
+#  - name: "My-Local-Ansible-Root-CA.pem.crt"
+#    type: "CA"
+#    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+#
+#  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+#    type: "CA"
+#    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+#
+#  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+#    type: "CA"
+#    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+#
+#  - name: "my-kibana-cluster.domain.tld"
+#    type: "cert"
+#    src: "/tmp/my-kibana-cluster.domain.tld.zip"
+#    dest: "{{ inv_install_kibana_ssl_path }}"
+#    #src_user: "myUser"
+#    #src_password: "secretPassword"
+#    dest_user: "root"
+#    dest_group: "kibana"
+#    dest_mode: "0755"

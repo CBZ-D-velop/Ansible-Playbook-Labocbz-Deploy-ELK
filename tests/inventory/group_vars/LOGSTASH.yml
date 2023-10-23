@@ -1,7 +1,7 @@
 ---
 
 inv_logstash_prepare_host_users:
-  - login: "root"
+  - login: "logstash"
     group: "logstash"
 
 inv_install_logstash_major_version: 8
@@ -36,14 +36,14 @@ inv_install_logstash_distributor_pipeline:
   beats: 
     - 5044
 
-inv_install_logstash_beats_ssl: true
+inv_install_logstash_beats_ssl: false
 
-inv_install_logstash_api: true
+inv_install_logstash_api: false
 inv_install_logstash_api_ports: "9600"
 inv_install_logstash_api_auth_type: "basic"
 inv_install_logstash_api_auth_login: "admin"
 inv_install_logstash_api_auth_password: "s3cUreP4$$w0rD"
-inv_install_logstash_api_ssl: true
+inv_install_logstash_api_ssl: false
 inv_install_logstash_api_jks: "{{ inv_install_logstash_ssl_path }}/{{ inv_install_logstash_cluster_name }}/{{ inv_install_logstash_cluster_name }}.jks"
 inv_install_logstash_api_jks_password: "My3DD4fndfjff"
 inv_install_logstash_api_p12: "{{ inv_install_logstash_ssl_path }}/{{ inv_install_logstash_cluster_name }}/{{ inv_install_logstash_cluster_name }}.p12"
@@ -52,7 +52,7 @@ inv_install_logstash_ssl_crt: "{{ inv_install_logstash_ssl_path }}/{{ inv_instal
 inv_install_logstash_ssl_p8: "{{ inv_install_logstash_ssl_path }}/{{ inv_install_logstash_cluster_name }}/{{ inv_install_logstash_cluster_name }}.pkcs8.p8"
 
 inv_install_logstash_host: "0.0.0.0"
-inv_install_logstash_client_auth: true
+inv_install_logstash_client_auth: false
 inv_install_logstash_beat_ssl_crt: "{{ inv_install_logstash_ssl_path }}/{{ inv_install_logstash_cluster_name }}/{{ inv_install_logstash_cluster_name }}.pem.crt"
 inv_install_logstash_beat_ssl_key: "{{ inv_install_logstash_ssl_path }}/{{ inv_install_logstash_cluster_name }}/{{ inv_install_logstash_cluster_name }}.pem.key"
 inv_install_logstash_ssl_authorities: "{{ inv_install_logstash_ssl_path }}/{{ inv_install_logstash_cluster_name }}/ca-chain.pem.crt"
@@ -67,7 +67,7 @@ inv_install_logstash_ram: "1g"
 inv_install_logstash_loglevel: "info"
 
 inv_install_logstash_elasticsearch_shard: 3
-inv_install_logstash_elasticsearch_ssl: true
+inv_install_logstash_elasticsearch_ssl: false
 inv_install_logstash_elasticsearch_client_auth: true
 inv_install_logstash_elasticsearch_login: "elastic"
 inv_install_logstash_elasticsearch_password: "myVeryStringP@ssword"
@@ -76,25 +76,25 @@ inv_install_logstash_elasticsearch_hosts:
   - "molecule-local-instance-2-deploy-elk:9200"
   - "molecule-local-instance-3-deploy-elk:9200"
 
-inv_logstash_cert_bundles:
-  - name: "My-Local-Ansible-Root-CA.pem.crt"
-    type: "CA"
-    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
-
-  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
-    type: "CA"
-    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
-
-  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
-    type: "CA"
-    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
-
-  - name: "my-logstash-cluster.domain.tld"
-    type: "cert"
-    src: "/tmp/my-logstash-cluster.domain.tld.zip"
-    dest: "{{ inv_install_logstash_ssl_path }}"
-    #src_user: "myUser"
-    #src_password: "secretPassword"
-    dest_user: "root"
-    dest_group: "logstash"
-    dest_mode: "0755"
+#inv_logstash_cert_bundles:
+#  - name: "My-Local-Ansible-Root-CA.pem.crt"
+#    type: "CA"
+#    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+#
+#  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+#    type: "CA"
+#    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+#
+#  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+#    type: "CA"
+#    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+#
+#  - name: "my-logstash-cluster.domain.tld"
+#    type: "cert"
+#    src: "/tmp/my-logstash-cluster.domain.tld.zip"
+#    dest: "{{ inv_install_logstash_ssl_path }}"
+#    #src_user: "myUser"
+#    #src_password: "secretPassword"
+#    dest_user: "root"
+#    dest_group: "logstash"
+#    dest_mode: "0755"
