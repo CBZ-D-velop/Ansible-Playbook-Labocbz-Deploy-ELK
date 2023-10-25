@@ -58,5 +58,5 @@ inv_add_apache_confs_configurations:
       disabled: false
       request_body: 4096000
       sec_rules_remove_by_id:
-      #  - 949110
+        - 949110
       #  - 933120

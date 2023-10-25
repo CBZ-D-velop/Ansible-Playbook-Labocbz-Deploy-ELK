@@ -34,10 +34,10 @@
   tasks:
 
     - name: "Import cryptographic content if needed (cert)"
-      loop: "{{ inv_add_apache_confs_configurations }}"
+      loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
       loop_control:
         loop_var: bundle
-      when: inv_add_apache_confs_configurations is defined and bundle.type == "cert"
+      when: inv_add_apache_confs_configurations_cert_bundles is defined and bundle.type == "cert"
       ansible.builtin.copy:
         src: "../../tests/certs/{{ bundle.name }}.zip"
         dest: "/tmp/{{ bundle.name }}.zip"
@@ -46,10 +46,10 @@
         mode: 0700
 
     - name: "Import cryptographic content if needed (CA)"
-      loop: "{{ inv_add_apache_confs_configurations }}"
+      loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
       loop_control:
         loop_var: bundle
-      when: inv_add_apache_confs_configurations is defined and bundle.type == "CA"
+      when: inv_add_apache_confs_configurations_cert_bundles is defined and bundle.type == "CA"
       ansible.builtin.copy:
         src: "../../tests/certs/{{ bundle.name }}"
         dest: "/tmp/{{ bundle.name }}"

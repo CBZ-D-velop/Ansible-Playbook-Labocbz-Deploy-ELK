@@ -1,8 +1,8 @@
 ---
 
 inv_elasticsearch_prepare_host_users:
-  - login: "root"
-    group: "elastic"
+  - login: "elasticsearch"
+    group: "elasticsearch"
 
 inv_install_elasticsearch_major_version: "8"
 
@@ -24,6 +24,8 @@ inv_install_elasticsearch_ssl: true
 
 inv_install_elasticsearch_heap: "2g"
 
+inv_install_elasticsearch_seed_host: "molecule-local-instance-1-deploy-elk"
+
 inv_elasticsearch_cert_bundles:
   - name: "My-Local-Ansible-Root-CA.pem.crt"
     type: "CA"
@@ -44,5 +46,5 @@ inv_elasticsearch_cert_bundles:
     #src_user: "myUser"
     #src_password: "secretPassword"
     dest_user: "root"
-    dest_group: "elastic"
+    dest_group: "elasticsearch"
     dest_mode: "0755"
