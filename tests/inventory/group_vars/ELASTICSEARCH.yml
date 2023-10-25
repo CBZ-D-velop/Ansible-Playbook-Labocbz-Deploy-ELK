@@ -11,7 +11,7 @@ inv_install_elasticsearch_cluster_name: "my-elasticsearch-cluster.domain.tld"
 inv_install_elasticsearch_data_path: "/var/lib/elasticsearch"
 inv_install_elasticsearch_config_path: "/etc/elasticsearch"
 
-inv_install_elasticsearch_client_auth: false
+inv_install_elasticsearch_client_auth: true
 inv_install_elasticsearch_ssl_path: "{{ inv_install_elasticsearch_config_path }}/ssl"
 inv_install_elasticsearch_ssl_authorities: "{{ inv_install_elasticsearch_ssl_path }}/{{ inv_install_elasticsearch_cluster_name }}/ca-chain.pem.crt"
 
@@ -20,29 +20,31 @@ inv_install_elasticsearch_ssl_crt: "{{ inv_install_elasticsearch_ssl_path }}/{{ 
 
 
 inv_install_elasticsearch_elastic_password: "myVeryStringP@ssword"
-inv_install_elasticsearch_ssl: false
+inv_install_elasticsearch_ssl: true
 
 inv_install_elasticsearch_heap: "2g"
 
-#inv_elasticsearch_cert_bundles:
-#  - name: "My-Local-Ansible-Root-CA.pem.crt"
-#    type: "CA"
-#    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
-#
-#  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
-#    type: "CA"
-#    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
-#
-#  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
-#    type: "CA"
-#    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
-#
-#  - name: "my-elasticsearch-cluster.domain.tld"
-#    type: "cert"
-#    src: "/tmp/my-elasticsearch-cluster.domain.tld.zip"
-#    dest: "{{ inv_install_elasticsearch_ssl_path }}"
-#    #src_user: "myUser"
-#    #src_password: "secretPassword"
-#    dest_user: "root"
-#    dest_group: "elasticsearch"
-#    dest_mode: "0755"
+inv_install_elasticsearch_seed_host: "molecule-local-instance-1-deploy-elk"
+
+inv_elasticsearch_cert_bundles:
+  - name: "My-Local-Ansible-Root-CA.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+
+  - name: "my-elasticsearch-cluster.domain.tld"
+    type: "cert"
+    src: "/tmp/my-elasticsearch-cluster.domain.tld.zip"
+    dest: "{{ inv_install_elasticsearch_ssl_path }}"
+    #src_user: "myUser"
+    #src_password: "secretPassword"
+    dest_user: "root"
+    dest_group: "elasticsearch"
+    dest_mode: "0755"

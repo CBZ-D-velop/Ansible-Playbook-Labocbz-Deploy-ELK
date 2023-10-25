@@ -333,7 +333,7 @@
         - name: "Check default vhost on HTTP"
           register: result
           failed_when: not (result.status != 200 or result.status == -1)
-          ansible.buialtin.uri:
+          ansible.builtin.uri:
             url: "http://{{ inventory_hostname }}:{{ inv_add_apache_confs_http_listen_port }}/"
             method: "GET"
 
