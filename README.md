@@ -20,7 +20,17 @@
 
 An Ansible playbook to deploy and configure an ELK stack on your hosts.
 
+This playbook facilitates the deployment of the ELK Stack, which includes Elasticsearch, Logstash, and Kibana. It seamlessly manages SSL and mTLS communication between each component but requires you to have the necessary certificates in advance.
+
+Additionally, the playbook handles the configuration of interfaces, allowing you to set up a reverse proxy in front of Kibana for enhanced interface protection. Each component is installed using a boolean variable, such as inv_install_kibana: true. This flexibility enables you to deploy the ELK Stack on a single machine or multiple machines, offering the option of decentralizing Kibana or Logstash as needed.
+
+With this playbook, you can efficiently set up and configure the ELK Stack, enhancing your ability to manage and analyze log data, while ensuring secure communication and deployment options.
+
 ## Deployment diagramm
+
+![](./assets/Ansible-Playbook-Labocbz-Deploy-ELK.drawio.svg)
+
+This showcases a potential deployment realized using this playbook. We can observe an ELK service component, which is divided into four subsystems: Apache2 (reverse proxy), Logstash, Elasticsearch (Elastic), and Kibana. It's worth noting that the Elastic component is installed in the form of a three-machine cluster. Each node communicates with the others via mTLS. Both the Logstash and Kibana components are also configured with mTLS and Basic Auth (Logstash is responsible for ingesting logs into Elasticsearch and Kibana for its configuration). Please note that while it's possible to create special accounts for Kibana and Logstash within Elasticsearch, this functionality is not natively managed by the playbook. The playbook doesn't create accounts; it simply changes the password to the one provided as a parameter. You could consider a workflow where you install the entire stack, create the accounts, and then deploy the stack without reinstalling Elasticsearch (as the playbook removes data to start or bootstrap the cluster).
 
 ## Tests and simulations
 
@@ -97,7 +107,13 @@ Here you can put your change to keep a trace of your work and decisions.
 * Playbook deploy Elasticsearch
 * Playbook deploy Logstash
 * Playbook deploy Kibana
-* Playbook deploy Apache2 as reverse proxy ssl / Auth 
+* Playbook deploy Apache2 as reverse proxy ssl / Auth
+
+### 2023-10-30: Doc
+
+* Added readme
+* Added diagram
+
 ## Authors
 
 * Lord Robin Crombez
