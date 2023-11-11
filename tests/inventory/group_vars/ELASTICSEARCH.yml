@@ -1,6 +1,6 @@
 ---
 
-inv_elasticsearch_prepare_host_users:
+inv_install_elasticsearch_prepare_host_users:
   - login: "elasticsearch"
     group: "elasticsearch"
 

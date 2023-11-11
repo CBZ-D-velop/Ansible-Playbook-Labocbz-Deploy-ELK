@@ -1,6 +1,6 @@
 ---
 
-inv_kibana_prepare_host_users:
+inv_install_kibana_prepare_host_users:
   - login: "kibana"
     group: "kibana"
 
