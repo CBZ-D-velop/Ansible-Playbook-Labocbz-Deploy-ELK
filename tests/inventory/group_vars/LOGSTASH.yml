@@ -1,6 +1,6 @@
 ---
 
-inv_logstash_prepare_host_users:
+inv_install_logstash_prepare_host_users:
   - login: "logstash"
     group: "logstash"
 
