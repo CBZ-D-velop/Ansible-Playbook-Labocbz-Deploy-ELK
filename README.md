@@ -114,6 +114,10 @@ Here you can put your change to keep a trace of your work and decisions.
 * Added readme
 * Added diagram
 
+### 2023-12-18: Tested, Iptables
+
+* Iptables added to block Kibana without Apache if enabled
+
 ## Authors
 
 * Lord Robin Crombez

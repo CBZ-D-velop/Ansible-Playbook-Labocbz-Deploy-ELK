@@ -1,8 +1,13 @@
 ---
 
+inv_install_elasticsearch: false
+
 inv_install_elasticsearch_prepare_host_users:
   - login: "elasticsearch"
     group: "elasticsearch"
+
+inv_logrotate_elasticsearch_configurations:
+  - "elasticsearch"
 
 inv_install_elasticsearch_major_version: "8"
 
@@ -45,6 +50,6 @@ inv_elasticsearch_cert_bundles:
     dest: "{{ inv_install_elasticsearch_ssl_path }}"
     #src_user: "myUser"
     #src_password: "secretPassword"
-    dest_user: "root"
+    dest_user: "elasticsearch"
     dest_group: "elasticsearch"
-    dest_mode: "0755"
+    dest_mode: "0700"

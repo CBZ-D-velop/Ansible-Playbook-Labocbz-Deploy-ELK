@@ -2,12 +2,9 @@
 - name: "Install Elasticsearch"
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
-  remote_user: root
   become: true
   become_method: sudo
   become_user: root
-  tags:
-    - "labocbz.install_elasticsearch"
 
   tasks:
     - name: "Install Elasticsearch"
@@ -75,15 +72,20 @@
           ansible.builtin.include_role:
             name: "labocbz.install_elasticsearch"
 
+        - name: "Include labocbz.add_logrotate_confs"
+          tags:
+            - "labocbz.add_logrotate_confs"
+          vars:
+            logrotate_configurations: "{{ inv_logrotate_elasticsearch_configurations }}"
+          ansible.builtin.include_role:
+            name: "labocbz.add_logrotate_confs"
+
 - name: "Install Logstash"
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
-  remote_user: root
   become: true
   become_method: sudo
   become_user: root
-  tags:
-    - "labocbz.install_logstash"
 
   tasks:
     - name: "Install Logstash"
@@ -173,15 +175,20 @@
           ansible.builtin.include_role:
             name: "labocbz.install_logstash"
 
+        - name: "Include labocbz.add_logrotate_confs"
+          tags:
+            - "labocbz.add_logrotate_confs"
+          vars:
+            logrotate_configurations: "{{ inv_logrotate_logstash_configurations }}"
+          ansible.builtin.include_role:
+            name: "labocbz.add_logrotate_confs"
+
 - name: "Install Kibana"
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
-  remote_user: root
   become: true
   become_method: sudo
   become_user: root
-  tags:
-    - "labocbz.install_kibana"
 
   tasks:
     - name: "Install Kibana"
@@ -255,17 +262,13 @@
           ansible.builtin.include_role:
             name: "labocbz.install_kibana"
 
-- name: "Install Apache2"
-  hosts: "{{ tower_env | default([]) }}"
-  gather_facts: true
-  remote_user: root
-  become: true
-  become_method: sudo
-  become_user: root
-  tags:
-    - "labocbz.install_apache"
-
-  tasks:
+        - name: "Include labocbz.add_logrotate_confs"
+          tags:
+            - "labocbz.add_logrotate_confs"
+          vars:
+            logrotate_configurations: "{{ inv_logrotate_kibana_configurations }}"
+          ansible.builtin.include_role:
+            name: "labocbz.add_logrotate_confs"
 
     - name: "Install Apache2"
       when: inv_install_apache | default(false)
@@ -343,6 +346,15 @@
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_configurations_apache }}"
+            logrotate_configurations: "{{ inv_logrotate_apache_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
+
+        - name: "Block all trafic from other hosts on port 80 (disable acces to Kibana without Apache2)"
+          ansible.builtin.iptables:
+            chain: "INPUT"
+            protocol: "tcp"
+            destination_port: "{{ inv_install_kibana_port }}"
+            jump: "DROP"
+            source: "! 127.0.0.1"
+            comment: "Force external user to use Apache2"
