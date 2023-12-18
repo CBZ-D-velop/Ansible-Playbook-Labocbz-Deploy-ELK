@@ -1,7 +1,7 @@
 ---
 - name: "labocbz.prepare_host"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Prepare-Host.git"
-  version: "2.0"
+  version: "2.1"
 
 - name: "labocbz.add_certificates"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Certificates.git"
@@ -9,28 +9,28 @@
 
 - name: "labocbz.install_elasticsearch"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Elasticsearch.git"
-  version: "3.0"
+  version: "4.0"
 
 - name: "labocbz.install_logstash"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Logstash.git"
-  version: "3.0"
+  version: "4.0"
 
 - name: "labocbz.install_kibana"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Kibana.git"
-  version: "3.0"
+  version: "4.0"
 
 - name: "labocbz.install_apache"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Apache.git"
-  version: "3.1"
+  version: "4.0"
 
 - name: "labocbz.add_apache_confs"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Apache-Confs.git"
-  version: "3.1"
+  version: "4.0"
 
 - name: "labocbz.install_java"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Java.git"
   version: "2.0"
 
-- name: "labocbz.add_apache_confs"
-  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Apache-Confs.git"
-  version: "3.1"
+- name: "labocbz.add_logrotate_confs"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Logrotate-Confs.git"
+  version: "2.2"

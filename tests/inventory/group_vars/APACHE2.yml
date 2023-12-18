@@ -1,5 +1,15 @@
 # From inventory
 ---
+inv_install_apache: true
+
+inv_logrotate_apache_configurations:
+  - "apache2"
+  - "modsecurity"
+
+inv_prepare_host_apache_system_users:
+  - login: "www-data"
+    group: "www-data"
+
 inv_install_apache_https_listen_port: 443
 inv_install_apache_http_listen_port: 80
 
@@ -18,15 +28,66 @@ inv_install_apache_modules:
 inv_install_apache_loglevel: "info"
 
 inv_install_apache_enable_qos: true
-inv_install_apache_enable_security: true
-inv_install_apache_enable_evasive: true
-inv_install_apache_enable_pagespeed: true
+inv_install_apache_enable_security: false
+inv_install_apache_enable_evasive: false
+inv_install_apache_enable_pagespeed: false
 inv_install_apache_enable_prefork: true
 
 inv_install_apache_security_core_version: "3.3.0"
 inv_install_apache_security_version: "3.0.10"
 inv_install_apache_remove_all_vhosts: true
 
-inv_logrotate_configurations_apache:
-  - "apache2"
-  - "modsecurity"
+inv_add_apache_confs_http_listen_port: "{{ inv_install_apache_http_listen_port }}"
+inv_add_apache_confs_https_listen_port: "{{ inv_install_apache_https_listen_port }}"
+
+inv_add_apache_confs_webmaster: "your.webmaster@domain.tld"
+inv_add_apache_confs_request_body: 0
+inv_add_apache_confs_security_body_limit: 1024000000
+
+inv_add_apache_confs_ssl_files_path: "/etc/apache2/ssl"
+inv_add_apache_confs_conf_path: "/etc/apache2/sites-available"
+inv_add_apache_confs_base_document_root: "/var/www/html"
+
+inv_add_apache_confs_configurations_cert_bundles:
+  - name: "My-Local-Ansible-Root-CA.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+
+  - name: "my-kibana-cluster.domain.tld"
+    type: "cert"
+    src: "/tmp/my-kibana-cluster.domain.tld.zip"
+    dest: "{{ inv_add_apache_confs_ssl_files_path }}"
+    #src_user: "myUser"
+    #src_password: "secretPassword"
+    dest_user: "www-data"
+    dest_group: "www-data"
+    dest_mode: "0755"
+
+inv_add_apache_confs_configurations:
+  - server:
+      name: "my-kibana-cluster.domain.tld"
+      aliases:
+        - "localhost"
+        - "127.0.0.1"
+      webmaster: "{{ inv_add_apache_confs_webmaster }}"
+    ssl:
+      enabled: true
+      key: "{{ inv_add_apache_confs_ssl_files_path }}/my-kibana-cluster.domain.tld/my-kibana-cluster.domain.tld.pem.key"
+      crt: "{{ inv_add_apache_confs_ssl_files_path }}/my-kibana-cluster.domain.tld/my-kibana-cluster.domain.tld.pem.crt"
+    proxy:
+      url: "https://127.0.0.1:5601"
+      pass: "/"
+    security:
+      disabled: false
+      request_body: 4096000
+      sec_rules_remove_by_id:
+        - 949110
+      #  - 933120
