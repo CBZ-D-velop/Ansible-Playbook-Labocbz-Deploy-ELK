@@ -1,6 +1,6 @@
 ---
 
-inv_install_elasticsearch: false
+inv_install_elasticsearch: true
 
 inv_install_elasticsearch_prepare_host_users:
   - login: "elasticsearch"
