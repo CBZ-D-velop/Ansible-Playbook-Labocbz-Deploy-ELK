@@ -245,7 +245,7 @@
             install_kibana_cluster_name: "{{ inv_install_kibana_cluster_name }}"
             install_kibana_rewrite_base_path: "{{ inv_install_kibana_rewrite_base_path }}"
             install_kibana_base_path: "{{ inv_install_kibana_base_path }}"
-            install_kibana_public_base_url: "{{ inv_install_kibana_public_base_url }}"
+            install_kibana_public_pase_url: "{{ inv_install_kibana_public_pase_url }}"
             install_kibana_ssl_src: "{{ inv_install_kibana_ssl_src }}"
             install_kibana_ssl_path: "{{ inv_install_kibana_ssl_path }}"
             install_kibana_elasticsearch_port: "{{ inv_install_kibana_elasticsearch_port }}"
@@ -259,6 +259,9 @@
             install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_authorities }}"
             install_kibana_ssl_key: "{{ inv_install_kibana_ssl_key }}"
             install_kibana_ssl_crt: "{{ inv_install_kibana_ssl_crt }}"
+            install_kibana_elastic_ssl_authorities: "{{ inv_install_kibana_elastic_ssl_authorities }}"
+            install_kibana_elastic_ssl_key: "{{ inv_install_kibana_elastic_ssl_key }}"
+            install_kibana_elastic_ssl_crt: "{{ inv_install_kibana_elastic_ssl_crt }}"
           ansible.builtin.include_role:
             name: "labocbz.install_kibana"
 

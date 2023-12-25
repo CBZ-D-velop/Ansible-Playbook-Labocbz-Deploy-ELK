@@ -36,6 +36,10 @@ inv_install_kibana_elastic_hosts:
   - "molecule-local-instance-2-deploy-elk:9200"
   - "molecule-local-instance-3-deploy-elk:9200"
 
+inv_install_kibana_elastic_ssl_authorities: "{{ inv_install_kibana_ssl_authorities }}"
+inv_install_kibana_elastic_ssl_key: "{{ inv_install_kibana_ssl_key }}"
+inv_install_kibana_elastic_ssl_crt: "{{ inv_install_kibana_ssl_crt }}"
+
 inv_kibana_cert_bundles:
   - name: "My-Local-Ansible-Root-CA.pem.crt"
     type: "CA"

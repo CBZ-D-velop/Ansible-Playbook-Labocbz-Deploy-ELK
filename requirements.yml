@@ -17,7 +17,7 @@
 
 - name: "labocbz.install_kibana"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Kibana.git"
-  version: "4.0"
+  version: "5.0"
 
 - name: "labocbz.install_apache"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Apache.git"
