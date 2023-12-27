@@ -68,7 +68,8 @@
             install_elasticsearch_ssl: "{{ inv_install_elasticsearch_ssl }}"
             install_elasticsearch_ssl_key: "{{ inv_install_elasticsearch_ssl_key }}"
             install_elasticsearch_ssl_crt: "{{ inv_install_elasticsearch_ssl_crt }}"
-            install_elasticsearch_seed_host: "{{ inv_install_elasticsearch_seed_host }}"
+            install_elasticsearch_seed_hosts: "{{ inv_install_elasticsearch_seed_hosts }}"
+            install_elasticsearch_initial_master_nodes: "{{ inv_install_elasticsearch_initial_master_nodes }}"
           ansible.builtin.include_role:
             name: "labocbz.install_elasticsearch"
 
@@ -172,6 +173,14 @@
             install_logstash_elasticsearch_password: "{{ inv_install_logstash_elasticsearch_password }}"
             install_logstash_elasticsearch_hosts: "{{ inv_install_logstash_elasticsearch_hosts }}"
             install_logstash_elasticsearch_client_auth: "{{ inv_install_logstash_elasticsearch_client_auth }}"
+            install_logstash_ssl_elastic: "{{ inv_install_logstash_ssl_elastic }}"
+            install_logstash_ssl_elastic_jks: "{{ inv_install_logstash_ssl_elastic_jks }}"
+            install_logstash_ssl_elastic_jks_password: "{{ inv_install_logstash_ssl_elastic_jks_password }}"
+            install_logstash_ssl_elastic_key: "{{ inv_install_logstash_ssl_elastic_key }}"
+            install_logstash_ssl_elastic_crt: "{{ inv_install_logstash_ssl_elastic_crt }}"
+            install_logstash_ssl_elastic_p12: "{{ inv_install_logstash_ssl_elastic_p12 }}"
+            install_logstash_ssl_elastic_p8: "{{ inv_install_logstash_ssl_elastic_p8 }}"
+            install_logstash_ssl_elastic_authorities: "{{ inv_install_logstash_ssl_elastic_authorities }}"
           ansible.builtin.include_role:
             name: "labocbz.install_logstash"
 
@@ -246,7 +255,7 @@
             install_kibana_rewrite_base_path: "{{ inv_install_kibana_rewrite_base_path }}"
             install_kibana_base_path: "{{ inv_install_kibana_base_path }}"
             install_kibana_public_pase_url: "{{ inv_install_kibana_public_pase_url }}"
-            install_kibana_ssl_src: "{{ inv_install_kibana_ssl_src }}"
+            install_kibana_ssl: "{{ inv_install_kibana_ssl }}"
             install_kibana_ssl_path: "{{ inv_install_kibana_ssl_path }}"
             install_kibana_elasticsearch_port: "{{ inv_install_kibana_elasticsearch_port }}"
             #install_kibana_service_account_token: "{{ inv_install_kibana_service_account_token }}"

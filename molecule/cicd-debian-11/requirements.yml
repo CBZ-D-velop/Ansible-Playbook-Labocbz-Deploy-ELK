@@ -9,11 +9,11 @@
 
 - name: "labocbz.install_elasticsearch"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Elasticsearch.git"
-  version: "4.0"
+  version: "5.0"
 
 - name: "labocbz.install_logstash"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Logstash.git"
-  version: "4.0"
+  version: "5.0"
 
 - name: "labocbz.install_kibana"
   src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Kibana.git"
