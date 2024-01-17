@@ -74,6 +74,7 @@
             name: "labocbz.install_elasticsearch"
 
         - name: "Include labocbz.add_logrotate_confs"
+          when: inv_logrotate_elasticsearch_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
@@ -185,6 +186,7 @@
             name: "labocbz.install_logstash"
 
         - name: "Include labocbz.add_logrotate_confs"
+          when: inv_logrotate_logstash_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
@@ -275,6 +277,7 @@
             name: "labocbz.install_kibana"
 
         - name: "Include labocbz.add_logrotate_confs"
+          when: inv_logrotate_kibana_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
@@ -355,6 +358,7 @@
             name: "labocbz.add_apache_confs"
 
         - name: "Include labocbz.add_logrotate_confs"
+          when: inv_logrotate_apache_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
