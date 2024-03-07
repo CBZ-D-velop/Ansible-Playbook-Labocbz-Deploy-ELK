@@ -1,1 +1,20 @@
 ---
+inv_install_elasticsearch__seed_hosts:
+  - "molecule-local-instance-1-deploy-elk"
+  - "molecule-local-instance-2-deploy-elk"
+  - "molecule-local-instance-3-deploy-elk"
+
+inv_install_elasticsearch__initial_master_nodes:
+  - "molecule-local-instance-1-deploy-elk"
+  - "molecule-local-instance-2-deploy-elk"
+  - "molecule-local-instance-3-deploy-elk"
+
+inv_install_kibana__elastic_hosts:
+  - "molecule-local-instance-1-deploy-elk:9200"
+  - "molecule-local-instance-2-deploy-elk:9200"
+  - "molecule-local-instance-3-deploy-elk:9200"
+
+inv_install_logstash__elasticsearch_hosts:
+  - "molecule-local-instance-1-deploy-elk:9200"
+  - "molecule-local-instance-2-deploy-elk:9200"
+  - "molecule-local-instance-3-deploy-elk:9200"

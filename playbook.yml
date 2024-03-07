@@ -14,7 +14,7 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host_users: "{{ inv_install_elasticsearch_prepare_host_users }}"
+            prepare_host__users: "{{ inv_install_elasticsearch__prepare_host__users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -26,15 +26,15 @@
             loop_var: bundle
           when: inv_elasticsearch_cert_bundles is defined
           vars:
-            add_certificates_bundle_name: "{{ bundle.name }}"
-            add_certificates_bundle_type: "{{ bundle.type }}"
-            add_certificates_bundle_src: "{{ bundle.src }}"
-            add_certificates_bundle_dest: "{{ bundle.dest }}"
-            add_certificates_bundle_src_user: "{{ bundle.src_user }}"
-            add_certificates_bundle_src_password: "{{ bundle.src_password }}"
-            add_certificates_bundle_dest_user: "{{ bundle.dest_user }}"
-            add_certificates_bundle_dest_group: "{{ bundle.dest_group }}"
-            add_certificates_bundle_dest_mode: "{{ bundle.dest_mode }}"
+            add_certificates__bundle_name: "{{ bundle.name }}"
+            add_certificates__bundle_type: "{{ bundle.type }}"
+            add_certificates__bundle_src: "{{ bundle.src }}"
+            add_certificates__bundle_dest: "{{ bundle.dest }}"
+            add_certificates__bundle_src_user: "{{ bundle.src_user }}"
+            add_certificates__bundle_src_password: "{{ bundle.src_password }}"
+            add_certificates__bundle_dest_user: "{{ bundle.dest_user }}"
+            add_certificates__bundle_dest_group: "{{ bundle.dest_group }}"
+            add_certificates__bundle_dest_mode: "{{ bundle.dest_mode }}"
           ansible.builtin.include_role:
             name: "labocbz.add_certificates"
 
@@ -45,9 +45,9 @@
           tags:
             - "labocbz.install_java"
           vars:
-            java_version: "{{ inv_java_version }}"
-            java_cpu_architecture: "{{ inv_java_cpu_architecture }}"
-            java_version_is_default: true
+            install_java__version: "{{ inv_install_java__version }}"
+            install_java__cpu_architecture: "{{ inv_install_java__cpu_architecture }}"
+            install_java__version_is_default: true
           ansible.builtin.include_role:
             name: "labocbz.install_java"
 
@@ -55,30 +55,30 @@
           tags:
             - "labocbz.install_elasticsearch"
           vars:
-            install_elasticsearch_major_version: "{{ inv_install_elasticsearch_major_version }}"
-            install_elasticsearch_port: "{{ inv_install_elasticsearch_port }}"
-            install_elasticsearch_cluster_name: "{{ inv_install_elasticsearch_cluster_name }}"
-            install_elasticsearch_elastic_password: "{{ inv_install_elasticsearch_elastic_password }}"
-            install_elasticsearch_heap: "{{ inv_install_elasticsearch_heap }}"
-            install_elasticsearch_data_path: "{{ inv_install_elasticsearch_data_path }}"
-            install_elasticsearch_ssl_path: "{{ inv_install_elasticsearch_ssl_path }}"
-            install_elasticsearch_config_path: "{{ inv_install_elasticsearch_config_path }}"
-            install_elasticsearch_client_auth: "{{ inv_install_elasticsearch_client_auth }}"
-            install_elasticsearch_ssl_authorities: "{{ inv_install_elasticsearch_ssl_authorities }}"
-            install_elasticsearch_ssl: "{{ inv_install_elasticsearch_ssl }}"
-            install_elasticsearch_ssl_key: "{{ inv_install_elasticsearch_ssl_key }}"
-            install_elasticsearch_ssl_crt: "{{ inv_install_elasticsearch_ssl_crt }}"
-            install_elasticsearch_seed_hosts: "{{ inv_install_elasticsearch_seed_hosts }}"
-            install_elasticsearch_initial_master_nodes: "{{ inv_install_elasticsearch_initial_master_nodes }}"
+            install_elasticsearch__major_version: "{{ inv_install_elasticsearch__major_version }}"
+            install_elasticsearch__port: "{{ inv_install_elasticsearch__port }}"
+            install_elasticsearch__cluster_name: "{{ inv_install_elasticsearch__cluster_name }}"
+            install_elasticsearch__elastic_password: "{{ inv_install_elasticsearch__elastic_password }}"
+            install_elasticsearch__heap: "{{ inv_install_elasticsearch__heap }}"
+            install_elasticsearch__data_path: "{{ inv_install_elasticsearch__data_path }}"
+            install_elasticsearch__ssl_path: "{{ inv_install_elasticsearch__ssl_path }}"
+            install_elasticsearch__config_path: "{{ inv_install_elasticsearch__config_path }}"
+            install_elasticsearch__client_auth: "{{ inv_install_elasticsearch__client_auth }}"
+            install_elasticsearch__ssl_authorities: "{{ inv_install_elasticsearch__ssl_authorities }}"
+            install_elasticsearch__ssl: "{{ inv_install_elasticsearch__ssl }}"
+            install_elasticsearch__ssl_key: "{{ inv_install_elasticsearch__ssl_key }}"
+            install_elasticsearch__ssl_crt: "{{ inv_install_elasticsearch__ssl_crt }}"
+            install_elasticsearch__seed_hosts: "{{ inv_install_elasticsearch__seed_hosts }}"
+            install_elasticsearch__initial_master_nodes: "{{ inv_install_elasticsearch__initial_master_nodes }}"
           ansible.builtin.include_role:
             name: "labocbz.install_elasticsearch"
 
         - name: "Include labocbz.add_logrotate_confs"
-          when: inv_logrotate_elasticsearch_configurations | default(false)
+          when: inv_add_logrotate_confs__elasticsearch_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_elasticsearch_configurations }}"
+            add_logrotate_confs__files: "{{ inv_add_logrotate_confs__elasticsearch_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
 
@@ -97,7 +97,7 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host_users: "{{ inv_install_logstash_prepare_host_users }}"
+            prepare_host__users: "{{ inv_install_logstash__prepare_host__users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -109,15 +109,15 @@
             loop_var: bundle
           when: inv_logstash_cert_bundles is defined
           vars:
-            add_certificates_bundle_name: "{{ bundle.name }}"
-            add_certificates_bundle_type: "{{ bundle.type }}"
-            add_certificates_bundle_src: "{{ bundle.src }}"
-            add_certificates_bundle_dest: "{{ bundle.dest }}"
-            add_certificates_bundle_src_user: "{{ bundle.src_user }}"
-            add_certificates_bundle_src_password: "{{ bundle.src_password }}"
-            add_certificates_bundle_dest_user: "{{ bundle.dest_user }}"
-            add_certificates_bundle_dest_group: "{{ bundle.dest_group }}"
-            add_certificates_bundle_dest_mode: "{{ bundle.dest_mode }}"
+            add_certificates__bundle_name: "{{ bundle.name }}"
+            add_certificates__bundle_type: "{{ bundle.type }}"
+            add_certificates__bundle_src: "{{ bundle.src }}"
+            add_certificates__bundle_dest: "{{ bundle.dest }}"
+            add_certificates__bundle_src_user: "{{ bundle.src_user }}"
+            add_certificates__bundle_src_password: "{{ bundle.src_password }}"
+            add_certificates__bundle_dest_user: "{{ bundle.dest_user }}"
+            add_certificates__bundle_dest_group: "{{ bundle.dest_group }}"
+            add_certificates__bundle_dest_mode: "{{ bundle.dest_mode }}"
           ansible.builtin.include_role:
             name: "labocbz.add_certificates"
 
@@ -128,9 +128,9 @@
           tags:
             - "labocbz.install_java"
           vars:
-            java_version: "{{ inv_java_version }}"
-            java_cpu_architecture: "{{ inv_java_cpu_architecture }}"
-            java_version_is_default: true
+            install_java__version: "{{ inv_install_java__version }}"
+            install_java__cpu_architecture: "{{ inv_install_java__cpu_architecture }}"
+            install_java__version_is_default: true
           ansible.builtin.include_role:
             name: "labocbz.install_java"
 
@@ -138,59 +138,59 @@
           tags:
             - "labocbz.install_logstash"
           vars:
-            install_logstash_major_version: "{{ inv_install_logstash_major_version }}"
-            install_logstash_config_path: "{{ inv_install_logstash_config_path }}"
-            install_logstash_ssl_path: "{{ inv_install_logstash_ssl_path }}"
-            install_logstash_pipelines_path: "{{ inv_install_logstash_pipelines_path }}"
-            install_logstash_pipelines_reload: "{{ inv_install_logstash_pipelines_reload }}"
-            install_logstash_pipelines: "{{ inv_install_logstash_pipelines }}"
-            install_logstash_health_check_pipeline: "{{ inv_install_logstash_health_check_pipeline }}"
-            install_logstash_api: "{{ inv_install_logstash_api }}"
-            install_logstash_api_ports: "{{ inv_install_logstash_api_ports }}"
-            install_logstash_api_auth_type: "{{ inv_install_logstash_api_auth_type }}"
-            install_logstash_api_auth_login: "{{ inv_install_logstash_api_auth_login }}"
-            install_logstash_api_auth_password: "{{ inv_install_logstash_api_auth_password }}"
-            install_logstash_host: "{{ inv_install_logstash_host }}"
-            install_logstash_cluster_name: "{{ inv_install_logstash_cluster_name }}"
-            install_logstash_data_path: "{{ inv_install_logstash_data_path }}"
-            install_logstash_group: "{{ inv_install_logstash_group }}"
-            install_logstash_user: "{{ inv_install_logstash_user }}"
-            install_logstash_ram: "{{ inv_install_logstash_ram }}"
-            install_logstash_api_ssl: "{{ inv_install_logstash_api_ssl }}"
-            install_logstash_api_jks: "{{ inv_install_logstash_api_jks }}"
-            install_logstash_api_jks_password: "{{ inv_install_logstash_api_jks_password }}"
-            install_logstash_beats_ssl: "{{ inv_install_logstash_beats_ssl }}"
-            install_logstash_client_auth: "{{ inv_install_logstash_client_auth }}"
-            install_logstash_ssl_authorities: "{{ inv_install_logstash_ssl_authorities }}"
-            install_logstash_distributor_pipeline: "{{ inv_install_logstash_distributor_pipeline }}"
-            install_logstash_ssl_crt: "{{ inv_install_logstash_ssl_crt }}"
-            install_logstash_ssl_key: "{{ inv_install_logstash_ssl_key }}"
-            install_logstash_api_p12: "{{ inv_install_logstash_api_p12 }}"
-            install_logstash_ssl_p8: "{{ inv_install_logstash_ssl_p8 }}"
-            install_logstash_loglevel: "{{ inv_install_logstash_loglevel }}"
-            install_logstash_elasticsearch_shard: "{{ inv_install_logstash_elasticsearch_shard }}"
-            install_logstash_elasticsearch_ssl: "{{ inv_install_logstash_elasticsearch_ssl }}"
-            install_logstash_elasticsearch_login: "{{ inv_install_logstash_elasticsearch_login }}"
-            install_logstash_elasticsearch_password: "{{ inv_install_logstash_elasticsearch_password }}"
-            install_logstash_elasticsearch_hosts: "{{ inv_install_logstash_elasticsearch_hosts }}"
-            install_logstash_elasticsearch_client_auth: "{{ inv_install_logstash_elasticsearch_client_auth }}"
-            install_logstash_ssl_elastic: "{{ inv_install_logstash_ssl_elastic }}"
-            install_logstash_ssl_elastic_jks: "{{ inv_install_logstash_ssl_elastic_jks }}"
-            install_logstash_ssl_elastic_jks_password: "{{ inv_install_logstash_ssl_elastic_jks_password }}"
-            install_logstash_ssl_elastic_key: "{{ inv_install_logstash_ssl_elastic_key }}"
-            install_logstash_ssl_elastic_crt: "{{ inv_install_logstash_ssl_elastic_crt }}"
-            install_logstash_ssl_elastic_p12: "{{ inv_install_logstash_ssl_elastic_p12 }}"
-            install_logstash_ssl_elastic_p8: "{{ inv_install_logstash_ssl_elastic_p8 }}"
-            install_logstash_ssl_elastic_authorities: "{{ inv_install_logstash_ssl_elastic_authorities }}"
+            install_logstash__major_version: "{{ inv_install_logstash__major_version }}"
+            install_logstash__config_path: "{{ inv_install_logstash__config_path }}"
+            install_logstash__ssl_path: "{{ inv_install_logstash__ssl_path }}"
+            install_logstash__pipelines_path: "{{ inv_install_logstash__pipelines_path }}"
+            install_logstash__pipelines_reload: "{{ inv_install_logstash__pipelines_reload }}"
+            install_logstash__pipelines: "{{ inv_install_logstash__pipelines }}"
+            install_logstash__health_check_pipeline: "{{ inv_install_logstash__health_check_pipeline }}"
+            install_logstash__api: "{{ inv_install_logstash__api }}"
+            install_logstash__api_ports: "{{ inv_install_logstash__api_ports }}"
+            install_logstash__api_auth_type: "{{ inv_install_logstash__api_auth_type }}"
+            install_logstash__api_auth_login: "{{ inv_install_logstash__api_auth_login }}"
+            install_logstash__api_auth_password: "{{ inv_install_logstash__api_auth_password }}"
+            install_logstash__host: "{{ inv_install_logstash__host }}"
+            install_logstash__cluster_name: "{{ inv_install_logstash__cluster_name }}"
+            install_logstash__data_path: "{{ inv_install_logstash__data_path }}"
+            install_logstash__group: "{{ inv_install_logstash__group }}"
+            install_logstash__user: "{{ inv_install_logstash__user }}"
+            install_logstash__ram: "{{ inv_install_logstash__ram }}"
+            install_logstash__api_ssl: "{{ inv_install_logstash__api_ssl }}"
+            install_logstash__api_jks: "{{ inv_install_logstash__api_jks }}"
+            install_logstash__api_jks_password: "{{ inv_install_logstash__api_jks_password }}"
+            install_logstash__beats_ssl: "{{ inv_install_logstash__beats_ssl }}"
+            install_logstash__client_auth: "{{ inv_install_logstash__client_auth }}"
+            install_logstash__ssl_authorities: "{{ inv_install_logstash__ssl_authorities }}"
+            install_logstash__distributor_pipeline: "{{ inv_install_logstash__distributor_pipeline }}"
+            install_logstash__ssl_crt: "{{ inv_install_logstash__ssl_crt }}"
+            install_logstash__ssl_key: "{{ inv_install_logstash__ssl_key }}"
+            install_logstash__api_p12: "{{ inv_install_logstash__api_p12 }}"
+            install_logstash__ssl_p8: "{{ inv_install_logstash__ssl_p8 }}"
+            install_logstash__loglevel: "{{ inv_install_logstash__loglevel }}"
+            install_logstash__elasticsearch_shard: "{{ inv_install_logstash__elasticsearch_shard }}"
+            install_logstash__elasticsearch_ssl: "{{ inv_install_logstash__elasticsearch_ssl }}"
+            install_logstash__elasticsearch_login: "{{ inv_install_logstash__elasticsearch_login }}"
+            install_logstash__elasticsearch_password: "{{ inv_install_logstash__elasticsearch_password }}"
+            install_logstash__elasticsearch_hosts: "{{ inv_install_logstash__elasticsearch_hosts }}"
+            install_logstash__elasticsearch_client_auth: "{{ inv_install_logstash__elasticsearch_client_auth }}"
+            install_logstash__ssl_elastic: "{{ inv_install_logstash__ssl_elastic }}"
+            install_logstash__ssl_elastic_jks: "{{ inv_install_logstash__ssl_elastic_jks }}"
+            install_logstash__ssl_elastic_jks_password: "{{ inv_install_logstash__ssl_elastic_jks_password }}"
+            install_logstash__ssl_elastic_key: "{{ inv_install_logstash__ssl_elastic_key }}"
+            install_logstash__ssl_elastic_crt: "{{ inv_install_logstash__ssl_elastic_crt }}"
+            install_logstash__ssl_elastic_p12: "{{ inv_install_logstash__ssl_elastic_p12 }}"
+            install_logstash__ssl_elastic_p8: "{{ inv_install_logstash__ssl_elastic_p8 }}"
+            install_logstash__ssl_elastic_authorities: "{{ inv_install_logstash__ssl_elastic_authorities }}"
           ansible.builtin.include_role:
             name: "labocbz.install_logstash"
 
         - name: "Include labocbz.add_logrotate_confs"
-          when: inv_logrotate_logstash_configurations | default(false)
+          when: inv_add_logrotate_confs__logstash_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_logstash_configurations }}"
+            add_logrotate_confs__files: "{{ inv_add_logrotate_confs__logstash_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
 
@@ -209,7 +209,7 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host_users: "{{ inv_install_kibana_prepare_host_users }}"
+            prepare_host__users: "{{ inv_install_kibana__prepare_host__users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -221,15 +221,15 @@
             loop_var: bundle
           when: inv_kibana_cert_bundles is defined
           vars:
-            add_certificates_bundle_name: "{{ bundle.name }}"
-            add_certificates_bundle_type: "{{ bundle.type }}"
-            add_certificates_bundle_src: "{{ bundle.src }}"
-            add_certificates_bundle_dest: "{{ bundle.dest }}"
-            add_certificates_bundle_src_user: "{{ bundle.src_user }}"
-            add_certificates_bundle_src_password: "{{ bundle.src_password }}"
-            add_certificates_bundle_dest_user: "{{ bundle.dest_user }}"
-            add_certificates_bundle_dest_group: "{{ bundle.dest_group }}"
-            add_certificates_bundle_dest_mode: "{{ bundle.dest_mode }}"
+            add_certificates__bundle_name: "{{ bundle.name }}"
+            add_certificates__bundle_type: "{{ bundle.type }}"
+            add_certificates__bundle_src: "{{ bundle.src }}"
+            add_certificates__bundle_dest: "{{ bundle.dest }}"
+            add_certificates__bundle_src_user: "{{ bundle.src_user }}"
+            add_certificates__bundle_src_password: "{{ bundle.src_password }}"
+            add_certificates__bundle_dest_user: "{{ bundle.dest_user }}"
+            add_certificates__bundle_dest_group: "{{ bundle.dest_group }}"
+            add_certificates__bundle_dest_mode: "{{ bundle.dest_mode }}"
           ansible.builtin.include_role:
             name: "labocbz.add_certificates"
 
@@ -240,9 +240,9 @@
           tags:
             - "labocbz.install_java"
           vars:
-            java_version: "{{ inv_java_version }}"
-            java_cpu_architecture: "{{ inv_java_cpu_architecture }}"
-            java_version_is_default: true
+            install_java__version: "{{ inv_install_java__version }}"
+            install_java__cpu_architecture: "{{ inv_install_java__cpu_architecture }}"
+            install_java__version_is_default: true
           ansible.builtin.include_role:
             name: "labocbz.install_java"
 
@@ -250,38 +250,38 @@
           tags:
             - "labocbz.install_kibana"
           vars:
-            install_kibana_major_version: "{{ inv_install_kibana_major_version }}"
-            install_kibana_config_path: "{{ inv_install_kibana_config_path }}"
-            install_kibana_port: "{{ inv_install_kibana_port }}"
-            install_kibana_cluster_name: "{{ inv_install_kibana_cluster_name }}"
-            install_kibana_rewrite_base_path: "{{ inv_install_kibana_rewrite_base_path }}"
-            install_kibana_base_path: "{{ inv_install_kibana_base_path }}"
-            install_kibana_public_pase_url: "{{ inv_install_kibana_public_pase_url }}"
-            install_kibana_ssl: "{{ inv_install_kibana_ssl }}"
-            install_kibana_ssl_path: "{{ inv_install_kibana_ssl_path }}"
-            install_kibana_elasticsearch_port: "{{ inv_install_kibana_elasticsearch_port }}"
-            #install_kibana_service_account_token: "{{ inv_install_kibana_service_account_token }}"
-            install_kibana_service_account_token_basename: "{{ inv_install_kibana_service_account_token_basename }}"
-            install_kibana_elastic_password: "{{ inv_install_kibana_elastic_password }}"
-            install_kibana_elastic_user: "{{ inv_install_kibana_elastic_user }}"
-            install_kibana_elastic_protocol: "{{ inv_install_kibana_elastic_protocol }}"
-            install_kibana_elastic_hosts: "{{ inv_install_kibana_elastic_hosts }}"
-            install_kibana_elastic_client_auth: "{{ inv_install_kibana_elastic_client_auth }}"
-            install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_authorities }}"
-            install_kibana_ssl_key: "{{ inv_install_kibana_ssl_key }}"
-            install_kibana_ssl_crt: "{{ inv_install_kibana_ssl_crt }}"
-            install_kibana_elastic_ssl_authorities: "{{ inv_install_kibana_elastic_ssl_authorities }}"
-            install_kibana_elastic_ssl_key: "{{ inv_install_kibana_elastic_ssl_key }}"
-            install_kibana_elastic_ssl_crt: "{{ inv_install_kibana_elastic_ssl_crt }}"
+            install_kibana__major_version: "{{ inv_install_kibana__major_version }}"
+            install_kibana__config_path: "{{ inv_install_kibana__config_path }}"
+            install_kibana__port: "{{ inv_install_kibana__port }}"
+            install_kibana__cluster_name: "{{ inv_install_kibana__cluster_name }}"
+            install_kibana__rewrite_base_path: "{{ inv_install_kibana__rewrite_base_path }}"
+            install_kibana__base_path: "{{ inv_install_kibana__base_path }}"
+            install_kibana__public_pase_url: "{{ inv_install_kibana__public_pase_url }}"
+            install_kibana__ssl: "{{ inv_install_kibana__ssl }}"
+            install_kibana__ssl_path: "{{ inv_install_kibana__ssl_path }}"
+            install_kibana__elasticsearch_port: "{{ inv_install_kibana__elasticsearch_port }}"
+            #install_kibana__service_account_token: "{{ inv_install_kibana__service_account_token }}"
+            install_kibana__service_account_token_basename: "{{ inv_install_kibana__service_account_token_basename }}"
+            install_kibana__elastic_password: "{{ inv_install_kibana__elastic_password }}"
+            install_kibana__elastic_user: "{{ inv_install_kibana__elastic_user }}"
+            install_kibana__elastic_protocol: "{{ inv_install_kibana__elastic_protocol }}"
+            install_kibana__elastic_hosts: "{{ inv_install_kibana__elastic_hosts }}"
+            install_kibana__elastic_client_auth: "{{ inv_install_kibana__elastic_client_auth }}"
+            install_kibana__ssl_authorities: "{{ inv_install_kibana__ssl_authorities }}"
+            install_kibana__ssl_key: "{{ inv_install_kibana__ssl_key }}"
+            install_kibana__ssl_crt: "{{ inv_install_kibana__ssl_crt }}"
+            install_kibana__elastic_ssl_authorities: "{{ inv_install_kibana__elastic_ssl_authorities }}"
+            install_kibana__elastic_ssl_key: "{{ inv_install_kibana__elastic_ssl_key }}"
+            install_kibana__elastic_ssl_crt: "{{ inv_install_kibana__elastic_ssl_crt }}"
           ansible.builtin.include_role:
             name: "labocbz.install_kibana"
 
         - name: "Include labocbz.add_logrotate_confs"
-          when: inv_logrotate_kibana_configurations | default(false)
+          when: inv_add_logrotate_confs__kibana_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_kibana_configurations }}"
+            add_logrotate_confs__files: "{{ inv_add_logrotate_confs__kibana_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
 
@@ -297,20 +297,20 @@
         - name: "Include labocbz.add_certificates"
           tags:
             - "labocbz.add_certificates"
-          loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
+          loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
           loop_control:
             loop_var: bundle
-          when: inv_add_apache_confs_configurations_cert_bundles is defined
+          when: inv_add_apache_confs__configurations_cert_bundles is defined
           vars:
-            add_certificates_bundle_name: "{{ bundle.name }}"
-            add_certificates_bundle_type: "{{ bundle.type }}"
-            add_certificates_bundle_src: "{{ bundle.src }}"
-            add_certificates_bundle_dest: "{{ bundle.dest }}"
-            add_certificates_bundle_src_user: "{{ bundle.src_user }}"
-            add_certificates_bundle_src_password: "{{ bundle.src_password }}"
-            add_certificates_bundle_dest_user: "{{ bundle.dest_user }}"
-            add_certificates_bundle_dest_group: "{{ bundle.dest_group }}"
-            add_certificates_bundle_dest_mode: "{{ bundle.dest_mode }}"
+            add_certificates__bundle_name: "{{ bundle.name }}"
+            add_certificates__bundle_type: "{{ bundle.type }}"
+            add_certificates__bundle_src: "{{ bundle.src }}"
+            add_certificates__bundle_dest: "{{ bundle.dest }}"
+            add_certificates__bundle_src_user: "{{ bundle.src_user }}"
+            add_certificates__bundle_src_password: "{{ bundle.src_password }}"
+            add_certificates__bundle_dest_user: "{{ bundle.dest_user }}"
+            add_certificates__bundle_dest_group: "{{ bundle.dest_group }}"
+            add_certificates__bundle_dest_mode: "{{ bundle.dest_mode }}"
           ansible.builtin.include_role:
             name: "labocbz.add_certificates"
 
@@ -321,18 +321,18 @@
           tags:
             - "labocbz.install_apache"
           vars:
-            install_apache_https_listen_port: "{{ inv_install_apache_https_listen_port }}"
-            install_apache_http_listen_port: "{{ inv_install_apache_http_listen_port }}"
-            install_apache_modules: "{{ inv_install_apache_modules }}"
-            install_apache_enable_qos: "{{ inv_install_apache_enable_qos }}"
-            install_apache_enable_security: "{{ inv_install_apache_enable_security }}"
-            install_apache_security_core_version: "{{ inv_install_apache_security_core_version }}"
-            install_apache_remove_all_vhosts: "{{ inv_install_apache_remove_all_vhosts }}"
-            install_apache_loglevel: "{{ inv_install_apache_loglevel }}"
-            install_apache_security_version: "{{ inv_install_apache_security_version }}"
-            install_apache_enable_evasive: "{{ inv_install_apache_enable_evasive }}"
-            install_apache_enable_pagespeed: "{{ inv_install_apache_enable_pagespeed }}"
-            install_apache_enable_prefork: "{{ inv_install_apache_enable_prefork }}"
+            install_apache__https_listen_port: "{{ inv_install_apache__https_listen_port }}"
+            install_apache__http_listen_port: "{{ inv_install_apache__http_listen_port }}"
+            install_apache__modules: "{{ inv_install_apache__modules }}"
+            install_apache__enable_qos: "{{ inv_install_apache__enable_qos }}"
+            install_apache__enable_security: "{{ inv_install_apache__enable_security }}"
+            install_apache__security_core_version: "{{ inv_install_apache__security_core_version }}"
+            install_apache__remove_all_vhosts: "{{ inv_install_apache__remove_all_vhosts }}"
+            install_apache__loglevel: "{{ inv_install_apache__loglevel }}"
+            install_apache__security_version: "{{ inv_install_apache__security_version }}"
+            install_apache__enable_evasive: "{{ inv_install_apache__enable_evasive }}"
+            install_apache__enable_pagespeed: "{{ inv_install_apache__enable_pagespeed }}"
+            install_apache__enable_prefork: "{{ inv_install_apache__enable_prefork }}"
           ansible.builtin.include_role:
             name: "labocbz.install_apache"
 
@@ -340,29 +340,29 @@
           tags:
             - "labocbz.add_apache_confs"
           vars:
-            add_apache_confs_http_listen_port: "{{ inv_add_apache_confs_http_listen_port }}"
-            add_apache_confs_https_listen_port: "{{ inv_add_apache_confs_https_listen_port }}"
-            add_apache_confs_ldap_url: "{{ inv_add_apache_confs_ldap_url }}"
-            add_apache_confs_ldap_port: "{{ inv_add_apache_confs_ldap_port }}"
-            add_apache_confs_ldap_dc: "{{ inv_add_apache_confs_ldap_dc }}"
-            add_apache_confs_auth_ldap_url: "{{ inv_add_apache_confs_auth_ldap_url }}"
-            add_apache_confs_custom_ldap_base_header: "{{ inv_add_apache_confs_custom_ldap_base_header }}"
-            add_apache_confs_webmaster: "{{ inv_add_apache_confs_webmaster }}"
-            add_apache_confs_request_body: "{{ inv_add_apache_confs_request_body }}"
-            add_apache_confs_security_body_limit: "{{ inv_add_apache_confs_security_body_limit }}"
-            add_apache_confs_ssl_files_path: "{{ inv_add_apache_confs_ssl_files_path }}"
-            add_apache_confs_conf_path: "{{ inv_add_apache_confs_conf_path }}"
-            add_apache_confs_base_document_root: "{{ inv_add_apache_confs_base_document_root }}"
-            add_apache_confs_configurations: "{{ inv_add_apache_confs_configurations }}"
+            add_apache_confs__http_listen_port: "{{ inv_add_apache_confs__http_listen_port }}"
+            add_apache_confs__https_listen_port: "{{ inv_add_apache_confs__https_listen_port }}"
+            add_apache_confs__ldap_url: "{{ inv_add_apache_confs__ldap_url }}"
+            add_apache_confs__ldap_port: "{{ inv_add_apache_confs__ldap_port }}"
+            add_apache_confs__ldap_dc: "{{ inv_add_apache_confs__ldap_dc }}"
+            add_apache_confs__auth_ldap_url: "{{ inv_add_apache_confs__auth_ldap_url }}"
+            add_apache_confs__custom_ldap_base_header: "{{ inv_add_apache_confs__custom_ldap_base_header }}"
+            add_apache_confs__webmaster: "{{ inv_add_apache_confs__webmaster }}"
+            add_apache_confs__request_body: "{{ inv_add_apache_confs__request_body }}"
+            add_apache_confs__security_body_limit: "{{ inv_add_apache_confs__security_body_limit }}"
+            add_apache_confs__ssl_files_path: "{{ inv_add_apache_confs__ssl_files_path }}"
+            add_apache_confs__conf_path: "{{ inv_add_apache_confs__conf_path }}"
+            add_apache_confs__base_document_root: "{{ inv_add_apache_confs__base_document_root }}"
+            add_apache_confs__configurations: "{{ inv_add_apache_confs__configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_apache_confs"
 
         - name: "Include labocbz.add_logrotate_confs"
-          when: inv_logrotate_apache_configurations | default(false)
+          when: inv_add_logrotate_confs__apache_configurations | default(false)
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_apache_configurations }}"
+            add_logrotate_confs__files: "{{ inv_add_logrotate_confs__apache_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
 
@@ -370,7 +370,7 @@
           ansible.builtin.iptables:
             chain: "INPUT"
             protocol: "tcp"
-            destination_port: "{{ inv_install_kibana_port }}"
+            destination_port: "{{ inv_install_kibana__port }}"
             jump: "DROP"
             source: "! 127.0.0.1"
             comment: "Force external user to use Apache2"

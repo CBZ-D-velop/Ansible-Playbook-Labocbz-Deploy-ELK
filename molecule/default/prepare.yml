@@ -1,45 +1,47 @@
 ---
 # if you have any prepararion task
 - name: "Prepare"
-  hosts: "all"
+  hosts: "local"
   gather_facts: true
   tasks:
 
     #- name: "Include cryptographic content var file"
     #  ansible.builtin.include_vars: "../../tests/certs/main.yml"
 
+    - name: "Include labocbz.prepare_host"
+      tags:
+        - "labocbz.prepare_host"
+      ansible.builtin.include_role:
+        name: "labocbz.prepare_host"
+
     - name: "Gather facts from all hosts"
       delegate_to: "{{ item }}"
       delegate_facts: true
-      loop: "{{ groups['all'] }}"
+      loop: "{{ groups['local'] }}"
       ansible.builtin.setup:
 
     - name: "Edit /etc/hosts file to add all hosts"
-      loop: "{{ groups['all'] }}"
+      loop: "{{ groups['local'] }}"
       loop_control:
         loop_var: host
       register: output
       changed_when: output.rc != 0
       ansible.builtin.shell: "echo \"{{ hostvars[host]['ansible_default_ipv4']['address'] }}  {{ host }} # from Molecule\" >> /etc/hosts"
 
-- name: "Prepare Apache"
-  hosts: "all:&APACHE2"
-  gather_facts: true
-  tasks:
 
     - name: "Include labocbz.prepare_host"
       tags:
         - "labocbz.prepare_host"
       vars:
-        prepare_host_system_users: "{{ inv_prepare_host_apache_system_users }}"
+        prepare_host__system_users: "{{ inv_prepare_host__apache_system_users }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
     - name: "Import cryptographic content if needed (cert)"
-      loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
+      loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
       loop_control:
         loop_var: bundle
-      when: inv_add_apache_confs_configurations_cert_bundles is defined and bundle.type == "cert"
+      when: inv_add_apache_confs__configurations_cert_bundles is defined and bundle.type == "cert"
       ansible.builtin.copy:
         src: "../../tests/certs/{{ bundle.name }}.zip"
         dest: "/tmp/{{ bundle.name }}.zip"
@@ -48,10 +50,10 @@
         mode: 0700
 
     - name: "Import cryptographic content if needed (CA)"
-      loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
+      loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
       loop_control:
         loop_var: bundle
-      when: inv_add_apache_confs_configurations_cert_bundles is defined and bundle.type == "CA"
+      when: inv_add_apache_confs__configurations_cert_bundles is defined and bundle.type == "CA"
       ansible.builtin.copy:
         src: "../../tests/certs/{{ bundle.name }}"
         dest: "/tmp/{{ bundle.name }}"
@@ -59,16 +61,11 @@
         group: "root"
         mode: 0700
 
-- name: "Prepare Elasticsearch"
-  hosts: "all:&ELASTICSEARCH"
-  gather_facts: true
-  tasks:
-
     - name: "Include labocbz.prepare_host"
       tags:
         - "labocbz.prepare_host"
       vars:
-        prepare_host_system_users: "{{ inv_prepare_host_elasticsearch_system_users }}"
+        prepare_host__system_users: "{{ inv_prepare_host__elasticsearch_system_users }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
@@ -96,16 +93,11 @@
         group: "root"
         mode: 0700
 
-- name: "Prepare Logstash"
-  hosts: "all:&LOGSTASH"
-  gather_facts: true
-  tasks:
-
     - name: "Include labocbz.prepare_host"
       tags:
         - "labocbz.prepare_host"
       vars:
-        prepare_host_system_users: "{{ inv_prepare_host_logstash_system_users }}"
+        prepare_host__system_users: "{{ inv_prepare_host__logstash_system_users }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
@@ -133,16 +125,11 @@
         group: "root"
         mode: 0700
 
-- name: "Prepare Kibana"
-  hosts: "all:&KIBANA"
-  gather_facts: true
-  tasks:
-
     - name: "Include labocbz.prepare_host"
       tags:
         - "labocbz.prepare_host"
       vars:
-        prepare_host_system_users: "{{ inv_prepare_host_kibana_system_users }}"
+        prepare_host__system_users: "{{ inv_prepare_host__kibana_system_users }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 

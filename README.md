@@ -118,6 +118,12 @@ Here you can put your change to keep a trace of your work and decisions.
 
 * Iptables added to block Kibana without Apache if enabled
 
+### 2023-03-07: Refacto, fixes
+
+* Refacto vars
+* Fix Kibana SSL
+* Tested and added support for Debian 11/12 and Ubuntu 22
+
 ## Authors
 
 * Lord Robin Crombez
