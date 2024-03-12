@@ -27,3 +27,132 @@
       register: output
       changed_when: output.rc != 0
       ansible.builtin.shell: "echo \"{{ hostvars[host]['ansible_default_ipv4']['address'] }}  {{ host }} # from Molecule\" >> /etc/hosts"
+
+
+    - name: "Include labocbz.prepare_host"
+      tags:
+        - "labocbz.prepare_host"
+      vars:
+        prepare_host__system_users: "{{ inv_prepare_host__apache_system_users }}"
+      ansible.builtin.include_role:
+        name: "labocbz.prepare_host"
+
+    - name: "Import cryptographic content if needed (cert)"
+      loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_add_apache_confs__configurations_cert_bundles is defined and bundle.type == "cert"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}.zip"
+        dest: "/tmp/{{ bundle.name }}.zip"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Import cryptographic content if needed (CA)"
+      loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_add_apache_confs__configurations_cert_bundles is defined and bundle.type == "CA"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}"
+        dest: "/tmp/{{ bundle.name }}"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Include labocbz.prepare_host"
+      tags:
+        - "labocbz.prepare_host"
+      vars:
+        prepare_host__system_users: "{{ inv_prepare_host__elasticsearch_system_users }}"
+      ansible.builtin.include_role:
+        name: "labocbz.prepare_host"
+
+    - name: "Import cryptographic content if needed (cert)"
+      loop: "{{ inv_elasticsearch_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_elasticsearch_cert_bundles is defined and bundle.type == "cert"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}.zip"
+        dest: "/tmp/{{ bundle.name }}.zip"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Import cryptographic content if needed (CA)"
+      loop: "{{ inv_elasticsearch_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_elasticsearch_cert_bundles is defined and bundle.type == "CA"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}"
+        dest: "/tmp/{{ bundle.name }}"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Include labocbz.prepare_host"
+      tags:
+        - "labocbz.prepare_host"
+      vars:
+        prepare_host__system_users: "{{ inv_prepare_host__logstash_system_users }}"
+      ansible.builtin.include_role:
+        name: "labocbz.prepare_host"
+
+    - name: "Import cryptographic content if needed (cert)"
+      loop: "{{ inv_logstash_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_logstash_cert_bundles is defined and bundle.type == "cert"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}.zip"
+        dest: "/tmp/{{ bundle.name }}.zip"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Import cryptographic content if needed (CA)"
+      loop: "{{ inv_logstash_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_logstash_cert_bundles is defined and bundle.type == "CA"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}"
+        dest: "/tmp/{{ bundle.name }}"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Include labocbz.prepare_host"
+      tags:
+        - "labocbz.prepare_host"
+      vars:
+        prepare_host__system_users: "{{ inv_prepare_host__kibana_system_users }}"
+      ansible.builtin.include_role:
+        name: "labocbz.prepare_host"
+
+    - name: "Import cryptographic content if needed (cert)"
+      loop: "{{ inv_kibana_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_kibana_cert_bundles is defined and bundle.type == "cert"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}.zip"
+        dest: "/tmp/{{ bundle.name }}.zip"
+        owner: "root"
+        group: "root"
+        mode: 0700
+
+    - name: "Import cryptographic content if needed (CA)"
+      loop: "{{ inv_kibana_cert_bundles }}"
+      loop_control:
+        loop_var: bundle
+      when: inv_kibana_cert_bundles is defined and bundle.type == "CA"
+      ansible.builtin.copy:
+        src: "../../tests/certs/{{ bundle.name }}"
+        dest: "/tmp/{{ bundle.name }}"
+        owner: "root"
+        group: "root"
+        mode: 0700
