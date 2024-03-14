@@ -14,7 +14,7 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host__users: "{{ inv_install_elasticsearch__prepare_host__users }}"
+            prepare_host__system_users: "{{ inv_prepare_host__elasticsearch_system_users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -97,7 +97,7 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host__users: "{{ inv_install_logstash__prepare_host__users }}"
+            prepare_host__system_users: "{{ inv_prepare_host__logstash_system_users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -209,7 +209,7 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host__users: "{{ inv_install_kibana__prepare_host__users }}"
+            prepare_host__system_users: "{{ inv_prepare_host__kibana_system_users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
