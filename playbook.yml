@@ -3,7 +3,7 @@
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
   become: true
-  become_method: sudo
+  become_method: "ansible.builtin.sudo"
 
   tasks:
     - name: "Install Elasticsearch"
@@ -85,7 +85,7 @@
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
   become: true
-  become_method: sudo
+  become_method: "ansible.builtin.sudo"
 
   tasks:
     - name: "Install Logstash"
@@ -196,7 +196,7 @@
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
   become: true
-  become_method: sudo
+  become_method: "ansible.builtin.sudo"
 
   tasks:
     - name: "Install Kibana"
