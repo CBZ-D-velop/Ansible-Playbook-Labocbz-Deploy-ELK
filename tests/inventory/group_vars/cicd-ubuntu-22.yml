@@ -1,4 +1,6 @@
 ---
+tower_env: "cicd-ubuntu-22"
+
 inv_install_elasticsearch__seed_hosts:
   - "molecule-cicd-ubuntu-22-instance-1-deploy-elk"
   - "molecule-cicd-ubuntu-22-instance-2-deploy-elk"

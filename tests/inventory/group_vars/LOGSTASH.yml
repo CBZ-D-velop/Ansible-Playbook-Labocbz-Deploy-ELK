@@ -15,15 +15,11 @@ inv_install_logstash__pipelines_path: "{{ inv_install_logstash__config_path }}/p
 inv_install_logstash__pipelines_reload: "5s"
 
 inv_install_logstash__pipelines:
-  #- name: "httpd"
-  #  workers: 1
-  #  beats:
-  #    - 5045
-
-  - name: "fail2ban"
+  - name: "httpd"
     workers: 1
     beats:
-      - 5046
+      - 5045
+
 
 inv_install_logstash__health_check_pipeline:
   name: "health"

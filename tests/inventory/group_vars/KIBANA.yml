@@ -15,7 +15,7 @@ inv_install_kibana__port: 5601
 inv_install_kibana__cluster_name: "my-elk-cluster.domain.tld"
 
 inv_install_kibana__rewrite_base_path: false
-inv_install_kibana__base_path: ""
+#inv_install_kibana__base_path: ""
 inv_install_kibana__public_base_url: "https://localhost:{{ inv_install_kibana__port }}"
 
 inv_install_kibana__ssl_path: "{{ inv_install_kibana__config_path }}/ssl"
