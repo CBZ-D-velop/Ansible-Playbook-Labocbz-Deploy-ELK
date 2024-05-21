@@ -15,7 +15,7 @@ inv_install_logstash__pipelines_path: "{{ inv_install_logstash__config_path }}/p
 inv_install_logstash__pipelines_reload: "5s"
 
 inv_install_logstash__pipelines:
-  - name: "httpd"
+  - name: "apache2"
     workers: 1
     beats:
       - 5045
