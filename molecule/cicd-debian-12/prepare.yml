@@ -34,7 +34,6 @@
         - "labocbz.prepare_host"
       vars:
         prepare_host__system_users: "{{ inv_prepare_host__apache_system_users }}"
-        prepare_host__timezone: "{{ inv_prepare_host__timezone }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
@@ -67,7 +66,6 @@
         - "labocbz.prepare_host"
       vars:
         prepare_host__system_users: "{{ inv_prepare_host__elasticsearch_system_users }}"
-        prepare_host__timezone: "{{ inv_prepare_host__timezone }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
@@ -100,7 +98,6 @@
         - "labocbz.prepare_host"
       vars:
         prepare_host__system_users: "{{ inv_prepare_host__logstash_system_users }}"
-        prepare_host__timezone: "{{ inv_prepare_host__timezone }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
@@ -133,7 +130,6 @@
         - "labocbz.prepare_host"
       vars:
         prepare_host__system_users: "{{ inv_prepare_host__kibana_system_users }}"
-        prepare_host__timezone: "{{ inv_prepare_host__timezone }}"
       ansible.builtin.include_role:
         name: "labocbz.prepare_host"
 
