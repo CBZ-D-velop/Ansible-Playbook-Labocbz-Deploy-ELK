@@ -30,7 +30,7 @@ inv_install_apache__loglevel: "info"
 inv_install_apache__enable_qos: false
 inv_install_apache__enable_security: true
 inv_install_apache__enable_evasive: true
-inv_install_apache__enable_pagespeed: true
+inv_install_apache__enable_pagespeed: false
 inv_install_apache__enable_prefork: true
 
 inv_install_apache__security_core_version: "3.3.0"
