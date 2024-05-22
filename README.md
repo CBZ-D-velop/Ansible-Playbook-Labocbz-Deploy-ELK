@@ -130,6 +130,10 @@ Here you can put your change to keep a trace of your work and decisions.
 * New workers
 * Removed all automation based on branch
 
+### 2024-05-22: CI for non cluser
+
+* CI is designed (var only) for single instance tests
+
 ## Authors
 
 * Lord Robin Crombez
