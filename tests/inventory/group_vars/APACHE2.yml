@@ -1,6 +1,6 @@
 # From inventory
 ---
-inv_install_apache: false
+inv_install_apache: true
 
 inv_add_logrotate_confs__apache_configurations:
   - "apache2"
