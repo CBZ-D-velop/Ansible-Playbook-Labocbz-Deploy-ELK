@@ -1,42 +1,43 @@
 ---
 inv_install_kibana: true
 
-inv_logrotate_kibana_configurations:
+inv_add_logrotate_confs__kibana_configurations:
   - "kibana"
 
-inv_prepare_host_kibana_system_users:
+inv_prepare_host__kibana_system_users:
   - login: "kibana"
     group: "kibana"
 
-inv_install_kibana_major_version: "8"
+inv_install_kibana__major_version: "8"
 
-inv_install_kibana_config_path: "/etc/kibana"
-inv_install_kibana_port: 5601
-inv_install_kibana_cluster_name: "my-kibana-cluster.domain.tld"
+inv_install_kibana__config_path: "/etc/kibana"
+inv_install_kibana__port: 5601
+inv_install_kibana__cluster_name: "my-elk-cluster.domain.tld"
 
-inv_install_kibana_rewrite_base_path: false
-#inv_install_kibana_base_path: ""
-#inv_install_kibana_public_base_url: "https://localhost:{{ inv_install_kibana_port }}"
+inv_install_kibana__rewrite_base_path: false
+#inv_install_kibana__base_path: ""
+inv_install_kibana__public_base_url: "https://localhost:{{ inv_install_kibana__port }}"
 
-inv_install_kibana_ssl_path: "{{ inv_install_kibana_config_path }}/ssl"
+inv_install_kibana__ssl_path: "{{ inv_install_kibana__config_path }}/ssl"
 
-inv_install_kibana_elasticsearch_port: 9200
-inv_install_kibana_elastic_user: "elastic"
-inv_install_kibana_elastic_password: "myVeryStringP@ssword"
-#inv_install_kibana_service_account_token: ""
-inv_install_kibana_service_account_token_basename: "ANSIBLE-{{ ansible_date_time.iso8601_micro.replace(':', '-').replace('.', '-') }}"
-inv_install_kibana_elastic_client_auth: true
-inv_install_kibana_ssl_key: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/{{ inv_install_kibana_cluster_name }}.pem.key"
-inv_install_kibana_ssl_crt: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/{{ inv_install_kibana_cluster_name }}.pem.crt"
+inv_install_kibana__elasticsearch_port: 9200
+inv_install_kibana__elastic_user: "elastic"
+inv_install_kibana__elastic_password: "myVeryStringP@ssword"
+#inv_install_kibana__service_account_token: ""
+inv_install_kibana__service_account_token_basename: "ANSIBLE-{{ ansible_date_time.iso8601_micro.replace(':', '-').replace('.', '-') }}"
+inv_install_kibana__elastic_client_auth: true
+inv_install_kibana__ssl: true
+inv_install_kibana__ssl_key: "{{ inv_install_kibana__ssl_path }}/{{ inv_install_kibana__cluster_name }}/{{ inv_install_kibana__cluster_name }}.pem.key"
+inv_install_kibana__ssl_crt: "{{ inv_install_kibana__ssl_path }}/{{ inv_install_kibana__cluster_name }}/{{ inv_install_kibana__cluster_name }}.pem.crt"
+inv_install_kibana__ssl_authorities: "{{ inv_install_kibana__ssl_path }}/{{ inv_install_kibana__cluster_name }}/ca-chain.pem.crt"
+inv_install_kibana__elastic_protocol: "https"
 
-inv_install_kibana_ssl_authorities: "{{ inv_install_kibana_ssl_path }}/{{ inv_install_kibana_cluster_name }}/ca-chain.pem.crt"
-inv_install_kibana_elastic_protocol: "https"
-inv_install_kibana_elastic_hosts:
-  - "molecule-local-instance-1-install-kibana:9200"
+#inv_install_kibana__elastic_hosts:
+#  - "molecule-local-instance-1-install-kibana:9200"
 
-inv_install_kibana_elastic_ssl_authorities: "{{ inv_install_kibana_ssl_authorities }}"
-inv_install_kibana_elastic_ssl_key: "{{ inv_install_kibana_ssl_key }}"
-inv_install_kibana_elastic_ssl_crt: "{{ inv_install_kibana_ssl_crt }}"
+inv_install_kibana__elastic_ssl_authorities: "{{ inv_install_kibana__ssl_authorities }}"
+inv_install_kibana__elastic_ssl_key: "{{ inv_install_kibana__ssl_key }}"
+inv_install_kibana__elastic_ssl_crt: "{{ inv_install_kibana__ssl_crt }}"
 
 inv_kibana_cert_bundles:
   - name: "My-Local-Ansible-Root-CA.pem.crt"
@@ -51,10 +52,10 @@ inv_kibana_cert_bundles:
     type: "CA"
     src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
 
-  - name: "my-kibana-cluster.domain.tld"
+  - name: "my-elk-cluster.domain.tld"
     type: "cert"
-    src: "/tmp/my-kibana-cluster.domain.tld.zip"
-    dest: "{{ inv_install_kibana_ssl_path }}"
+    src: "/tmp/my-elk-cluster.domain.tld.zip"
+    dest: "{{ inv_install_kibana__ssl_path }}"
     #src_user: "myUser"
     #src_password: "secretPassword"
     dest_user: "kibana"

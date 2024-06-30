@@ -1,42 +1,42 @@
 ---
 inv_install_elasticsearch: true
 
-inv_logrotate_elasticsearch_configurations:
+inv_add_logrotate_confs__elasticsearch_configurations:
   - "elasticsearch"
 
-inv_prepare_host_elasticsearch_system_users:
+inv_prepare_host__elasticsearch_system_users:
   - login: "elasticsearch"
     group: "elasticsearch"
 
-inv_install_elasticsearch_major_version: "8"
+inv_install_elasticsearch__major_version: "8"
 
-inv_install_elasticsearch_port: 9200
-inv_install_elasticsearch_cluster_name: "my-elasticsearch-cluster.domain.tld"
-inv_install_elasticsearch_data_path: "/var/lib/elasticsearch"
-inv_install_elasticsearch_config_path: "/etc/elasticsearch"
+inv_install_elasticsearch__port: 9200
+inv_install_elasticsearch__cluster_name: "my-elk-cluster.domain.tld"
+inv_install_elasticsearch__data_path: "/var/lib/elasticsearch"
+inv_install_elasticsearch__config_path: "/etc/elasticsearch"
 
-inv_install_elasticsearch_client_auth: true
-inv_install_elasticsearch_ssl_path: "{{ inv_install_elasticsearch_config_path }}/ssl"
-inv_install_elasticsearch_ssl_authorities: "{{ inv_install_elasticsearch_ssl_path }}/my-elasticsearch-cluster.domain.tld/ca-chain.pem.crt"
+inv_install_elasticsearch__client_auth: true
+inv_install_elasticsearch__ssl_path: "{{ inv_install_elasticsearch__config_path }}/ssl"
+inv_install_elasticsearch__ssl_authorities: "{{ inv_install_elasticsearch__ssl_path }}/my-elk-cluster.domain.tld/ca-chain.pem.crt"
 
-inv_install_elasticsearch_ssl_key: "{{ inv_install_elasticsearch_ssl_path }}/{{ inv_install_elasticsearch_cluster_name }}/{{ inv_install_elasticsearch_cluster_name }}.pem.key"
-inv_install_elasticsearch_ssl_crt: "{{ inv_install_elasticsearch_ssl_path }}/{{ inv_install_elasticsearch_cluster_name }}/{{ inv_install_elasticsearch_cluster_name }}.pem.crt"
+inv_install_elasticsearch__ssl_key: "{{ inv_install_elasticsearch__ssl_path }}/{{ inv_install_elasticsearch__cluster_name }}/{{ inv_install_elasticsearch__cluster_name }}.pem.key"
+inv_install_elasticsearch__ssl_crt: "{{ inv_install_elasticsearch__ssl_path }}/{{ inv_install_elasticsearch__cluster_name }}/{{ inv_install_elasticsearch__cluster_name }}.pem.crt"
 
 
-inv_install_elasticsearch_elastic_password: "myVeryStringP@ssword"
-inv_install_elasticsearch_ssl: true
+inv_install_elasticsearch__elastic_password: "myVeryStringP@ssword"
+inv_install_elasticsearch__ssl: true
 
-inv_install_elasticsearch_heap: "1g"
+inv_install_elasticsearch__heap: "1g"
 
-inv_install_elasticsearch_seed_hosts:
-- "molecule-local-instance-1-deploy_elk"
-- "molecule-local-instance-2-deploy_elk"
-- "molecule-local-instance-3-deploy_elk"
-
-inv_install_elasticsearch_initial_master_nodes:
-- "molecule-local-instance-1-deploy_elk"
-- "molecule-local-instance-2-deploy_elk"
-- "molecule-local-instance-3-deploy_elk"
+#inv_install_elasticsearch__seed_hosts:
+# - "molecule-local-instance-1-deploy-elk"
+# - "molecule-local-instance-2-deploy-elk"
+# - "molecule-local-instance-3-deploy-elk"
+#
+#inv_install_elasticsearch__initial_master_nodes:
+# - "molecule-local-instance-1-deploy-elk"
+# - "molecule-local-instance-2-deploy-elk"
+# - "molecule-local-instance-3-deploy-elk"
 
 inv_elasticsearch_cert_bundles:
   - name: "My-Local-Ansible-Root-CA.pem.crt"
@@ -51,10 +51,10 @@ inv_elasticsearch_cert_bundles:
     type: "CA"
     src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
 
-  - name: "my-elasticsearch-cluster.domain.tld"
+  - name: "my-elk-cluster.domain.tld"
     type: "cert"
-    src: "/tmp/my-elasticsearch-cluster.domain.tld.zip"
-    dest: "{{ inv_install_elasticsearch_ssl_path }}"
+    src: "/tmp/my-elk-cluster.domain.tld.zip"
+    dest: "{{ inv_install_elasticsearch__ssl_path }}"
     #src_user: "myUser"
     #src_password: "secretPassword"
     dest_user: "elasticsearch"

@@ -1,0 +1,22 @@
+---
+tower_env: "cicd-debian-11"
+
+inv_install_elasticsearch__seed_hosts:
+  - "molecule-cicd-debian-11-instance-1-deploy-elk"
+  #- "molecule-cicd-debian-11-instance-2-deploy-elk"
+  #- "molecule-cicd-debian-11-instance-3-deploy-elk"
+
+inv_install_elasticsearch__initial_master_nodes:
+  - "molecule-cicd-debian-11-instance-1-deploy-elk"
+  #- "molecule-cicd-debian-11-instance-2-deploy-elk"
+  #- "molecule-cicd-debian-11-instance-3-deploy-elk"
+
+inv_install_kibana__elastic_hosts:
+  - "molecule-cicd-debian-11-instance-1-deploy-elk:9200"
+  #- "molecule-cicd-debian-11-instance-2-deploy-elk:9200"
+  #- "molecule-cicd-debian-11-instance-3-deploy-elk:9200"
+
+inv_install_logstash__elasticsearch_hosts:
+  - "molecule-cicd-debian-11-instance-1-deploy-elk:9200"
+  #- "molecule-cicd-debian-11-instance-2-deploy-elk:9200"
+  #- "molecule-cicd-debian-11-instance-3-deploy-elk:9200"

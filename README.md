@@ -28,7 +28,7 @@ With this playbook, you can efficiently set up and configure the ELK Stack, enha
 
 ## Deployment diagramm
 
-![](./assets/Ansible-Playbook-Labocbz-Deploy-ELK.drawio.svg)
+![Ansible-Playbook-Labocbz-Deploy-ELK](./assets/Ansible-Playbook-Labocbz-Deploy-ELK.drawio.svg)
 
 This showcases a potential deployment realized using this playbook. We can observe an ELK service component, which is divided into four subsystems: Apache2 (reverse proxy), Logstash, Elasticsearch (Elastic), and Kibana. It's worth noting that the Elastic component is installed in the form of a three-machine cluster. Each node communicates with the others via mTLS. Both the Logstash and Kibana components are also configured with mTLS and Basic Auth (Logstash is responsible for ingesting logs into Elasticsearch and Kibana for its configuration). Please note that while it's possible to create special accounts for Kibana and Logstash within Elasticsearch, this functionality is not natively managed by the playbook. The playbook doesn't create accounts; it simply changes the password to the one provided as a parameter. You could consider a workflow where you install the entire stack, create the accounts, and then deploy the stack without reinstalling Elasticsearch (as the playbook removes data to start or bootstrap the cluster).
 
@@ -39,7 +39,6 @@ This showcases a potential deployment realized using this playbook. We can obser
 You have to run multiples tests. *tests with an # are mandatory*
 
 ```MARKDOWN
-# lint
 # syntax
 # converge
 # idempotence
@@ -64,7 +63,6 @@ yamllint -c ./.yamllint .
 ansible-lint --config=./.ansible-lint .
 
 # Execute and test your playbook
-molecule lint
 molecule create
 molecule list
 molecule converge
@@ -117,6 +115,24 @@ Here you can put your change to keep a trace of your work and decisions.
 ### 2023-12-18: Tested, Iptables
 
 * Iptables added to block Kibana without Apache if enabled
+
+### 2023-03-07: Refacto, fixes
+
+* Refacto vars
+* Fix Kibana SSL
+* Tested and added support for Debian 11/12 and Ubuntu 22
+
+### 2024-05-19: New CI
+
+* Added Markdown lint to the CICD
+* Rework all Docker images
+* Change CICD vars convention
+* New workers
+* Removed all automation based on branch
+
+### 2024-05-22: CI for non cluser
+
+* CI is designed (var only) for single instance tests
 
 ## Authors
 
